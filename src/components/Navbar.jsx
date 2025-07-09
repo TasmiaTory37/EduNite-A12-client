@@ -29,7 +29,7 @@ const Navbar = () => {
                     <NavLink className={({isActive})=>isActive? 'text-blue-500' : ''}  to='/all-classes'>All Classes</NavLink>
                   </li>
                   <li>
-                    <NavLink className={({isActive})=>isActive? 'text-blue-500' : ''}  to='/aboutus'>Teach on EduManage</NavLink>
+                    <NavLink className={({isActive})=>isActive? 'text-blue-500' : ''}  to='/aboutus'>Teach on EduNite</NavLink>
                   </li>
                     
                   <li>
@@ -63,7 +63,7 @@ const Navbar = () => {
    
                     <li>
             
-                    <NavLink className={({isActive})=>isActive? 'text-blue-500' : ''}  to='/aboutus'>Teach on EduManage</NavLink>
+                    <NavLink className={({isActive})=>isActive? 'text-blue-500' : ''}  to='/aboutus'>Teach on EduNite</NavLink>
                
                     </li>
                     
