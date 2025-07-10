@@ -28,9 +28,7 @@ const Navbar = () => {
                   <li>
                     <NavLink className={({isActive})=>isActive? 'text-blue-500' : ''}  to='/all-classes'>All Classes</NavLink>
                   </li>
-                  <li>
-                    <NavLink className={({isActive})=>isActive? 'text-blue-500' : ''}  to='/aboutus'>Teach on EduNite</NavLink>
-                  </li>
+                  
                     
                   <li>
                     <NavLink className={({isActive})=>isActive? 'text-blue-500' : ''}  to='/contact'>Contact</NavLink>
@@ -39,8 +37,8 @@ const Navbar = () => {
                   </li>
                     {user && (
                     <li>
-                        <NavLink className={({isActive})=>isActive? 'text-indigo-500' : ''} to="/auth/my-bookings">My Bookings</NavLink>
-                    </li>
+                    <NavLink className={({isActive})=>isActive? 'text-blue-500' : ''}  to='/aboutus'>Teach on EduNite</NavLink>
+                  </li>
                     )}
                 </ul>
                 </div>
@@ -61,11 +59,7 @@ const Navbar = () => {
                     <NavLink className={({isActive})=>isActive? 'text-blue-500' : ''}  to='/all-classes'>All Classes</NavLink>
                     </li>
    
-                    <li>
-            
-                    <NavLink className={({isActive})=>isActive? 'text-blue-500' : ''}  to='/aboutus'>Teach on EduNite</NavLink>
-               
-                    </li>
+                    
                     
                     <li>
                     <NavLink className={({isActive})=>isActive? 'text-blue-500' : ''}  to='/contact'>Contact</NavLink>
@@ -74,37 +68,29 @@ const Navbar = () => {
                     </li>
                     {user && (
                     <li>
-                        <NavLink className={({isActive})=>isActive? 'text-blue-500' : ''} to="/auth/my-bookings">My Bookings</NavLink>
-                    </li>
+                    <NavLink className={({isActive})=>isActive? 'text-blue-500' : ''}  to='/aboutus'>Teach on EduNite</NavLink>
+                  </li>
                     )}
     </ul>
   </div>
-  <div className="navbar-end gap-2">
-  
-  <label tabIndex={0} className="relative group btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-              {user && user?.email ? (
-            <div>
-              <img className="w-10 rounded-full" src={user?.photoURL} alt="" />
-              <div className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 shadow hidden group-hover:block">
-                  {user.displayName ||user.email|| 'Anonymous User'}
-                </div>
-            </div>
-          ) : (
-            " "
-          )}
-          </div>
-                </label>
-                {user && user?.email ? (
-          <button onClick={logOut} className="btn bg-blue-500 text-white hover:bg-blue-600 rounded-none">
-            Logout
-          </button>
-        ) : (
-          <Link to="/login" className="btn bg-blue-500 text-white hover:bg-blue-600 rounded-none">
-            Login
-          </Link>
-        )}
-            </div>
+ <div className="navbar-end gap-4">
+  {user && user?.email ? (
+    <div className="dropdown dropdown-end">
+      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full">
+          <img src={user?.photoURL || 'https://i.ibb.co/MBtjqXQ/default-avatar.png'} alt="Profile" />
+        </div>
+      </label>
+      <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        <li className="text-center font-semibold text-gray-700 pointer-events-none">{user.displayName || user.email}</li>
+        <li><Link to="/dashboard">Dashboard</Link></li>
+        <li><button onClick={logOut}>Logout</button></li>
+      </ul>
+    </div>
+  ) : (
+    <Link to="/login" className="btn bg-blue-500 text-white hover:bg-blue-600 rounded-none">Login</Link>
+  )}
+</div>
             
         </div>
         </div>
