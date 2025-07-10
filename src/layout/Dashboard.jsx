@@ -18,11 +18,11 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
-      {/* Top Navbar */}
+    
       <Dashtop />
 
       <div className="flex flex-1">
-        {/* Sidebar */}
+     
         <aside className="w-full lg:w-64 bg-blue-800 text-white p-5 space-y-4 shadow-md">
           <h2 className="text-2xl font-bold text-center mb-6">Dashboard</h2>
           <ul className="space-y-3">
@@ -62,7 +62,7 @@ const Dashboard = () => {
           </div>
         </aside>
 
-        {/* Main Content */}
+    
         <main className="flex-1 p-6 overflow-y-auto">
           <Outlet />
         </main>
