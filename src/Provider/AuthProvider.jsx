@@ -51,28 +51,32 @@ const AuthProvider = ({ children }) => {
   };
 
   // Firebase auth listener
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      setUser(currentUser);
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+    if (currentUser) {
+      await currentUser.reload();
+      const freshUser = getAuth().currentUser;
 
-      if (currentUser) {
-        localStorage.setItem('user', JSON.stringify(currentUser));
-        try {
-          const idToken = await currentUser.getIdToken();
-          setToken(idToken);
-        } catch (err) {
-          console.error("Failed to get ID token:", err);
-        }
-      } else {
-        localStorage.removeItem('user');
-        setToken(null);
+      setUser(freshUser);
+      localStorage.setItem('user', JSON.stringify(freshUser));
+
+      try {
+        const idToken = await freshUser.getIdToken();
+        setToken(idToken);
+      } catch (err) {
+        console.error("Failed to get ID token:", err);
       }
+    } else {
+      setUser(null);
+      localStorage.removeItem('user');
+      setToken(null);
+    }
 
-      setLoading(false);
-    });
+    setLoading(false);
+  });
 
-    return () => unsubscribe();
-  }, []);
+  return () => unsubscribe();
+}, []);
 
 
 

@@ -4,7 +4,10 @@ import logo from '../assets/logo.png';
 import { AuthContext } from '../Provider/AuthProvider';
 import useAxiosSecure from '../Hook/useAxiosSecure';
 
+
+
 const Navbar = () => {
+
   const { user, logOut, loading } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const [dbUser, setDbUser] = useState(null);
@@ -16,7 +19,7 @@ const Navbar = () => {
         .then(res => setDbUser(res.data))
         .catch(err => console.error("Error fetching dbUser:", err));
     }
-  }, [user, axiosSecure]);
+  }, [user,axiosSecure]);
     if (loading) return null;
 
   return (
@@ -71,7 +74,7 @@ const Navbar = () => {
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
                     <img
-                      src={user?.photoURL || dbUser?.photoURL || 'https://i.ibb.co/MBtjqXQ/default-avatar.png'}
+                      src={user?.photoURL ||dbUser?.photoURL || 'https://i.ibb.co/MBtjqXQ/default-avatar.png'}
                       alt="Profile"
                     />
                   </div>
