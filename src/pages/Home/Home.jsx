@@ -6,7 +6,7 @@ import Roadmap from './Roadmap';
 import SuccessStories from './SuccessStories';
 import PopularCourses from './PopularCourses';
 import Feedback from './Feedback';
-import Achievements from './Achievements';
+import Achievements from './Stats';
 
 const Home = () => {
     return (
