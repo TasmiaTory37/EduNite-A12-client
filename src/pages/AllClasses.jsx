@@ -1,10 +1,11 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../Hook/useAxiosSecure';
-
+import { useNavigate } from 'react-router'; // ✅ import navigate
 
 const AllClasses = () => {
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate(); // ✅ initialize navigate
 
   const { data: classes = [], isLoading } = useQuery({
     queryKey: ['approved-classes'],
@@ -27,9 +28,12 @@ const AllClasses = () => {
               <h3 className="text-xl font-semibold text-blue-700">{cls.title}</h3>
               <p><strong>Instructor:</strong> {cls.name}</p>
               <p><strong>Price:</strong> ${cls.price}</p>
-              <p className="text-sm text-gray-600">{cls.description}</p>
+              <p className="text-sm text-gray-600">{cls.description.slice(0, 80)}...</p>
               <p><strong>Enrolled:</strong> {cls.enrollCount || 0}</p>
-              <button className="w-full mt-3 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded">
+              <button
+                onClick={() => navigate(`/class/${cls._id}`)} // ✅ redirect to class details
+                className="w-full mt-3 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded"
+              >
                 Enroll
               </button>
             </div>

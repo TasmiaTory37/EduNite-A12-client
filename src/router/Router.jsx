@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layout/MainLayout";
-import Dashboard from "../layout/Dashboard"; 
+import Dashboard from "../layout/Dashboard";
 import Home from "../pages/Home/Home";
 import ErrorPage from "../pages/ErrorPage";
 import AllClasses from "../pages/AllClasses";
-
+import ClassDetails from "../pages/ClassDetails"; 
+import Payment from "../pages/Payment";
 
 // Dashboard Pages (Student, Teacher, Admin)
 import StudentHome from "../pages/Dashboard/Student/StudentHome";
@@ -20,13 +21,17 @@ import Users from "../pages/Dashboard/Admin/Users";
 import AllAdminClasses from "../pages/Dashboard/Admin/AllClasses";
 import Profile from "../pages/Dashboard/Shared/Profile";
 
-import PrivateRoute from "./PrivateRoute"; 
+// Auth Pages
 import Login from "../pages/login";
 import Register from "../pages/Register";
 import TeachOnEduNite from "../pages/TeachOnEduNite";
+
+// Routes
+import PrivateRoute from "./PrivateRoute";
 import StudentRoute from "./StudentRoute";
 import TeacherRoute from "./TeacherRoute";
 import AdminRoute from "./AdminRoute";
+
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +48,14 @@ export const router = createBrowserRouter([
         element: <AllClasses />,
       },
       {
+        path: "/class/:id", // 
+        element: <PrivateRoute><ClassDetails /></PrivateRoute>,
+      },
+      {
+        path: "/payment/:id", 
+        element: <PrivateRoute><Payment/></PrivateRoute>,
+      },
+      {
         path: "/login",
         element: <Login />,
       },
@@ -51,14 +64,11 @@ export const router = createBrowserRouter([
         element: <Register />,
       },
       {
-      path:'/teach-on-edunite',
-      element:<PrivateRoute><TeachOnEduNite/></PrivateRoute>,
-    
-  },
+        path: "/teach-on-edunite",
+        element: <PrivateRoute><TeachOnEduNite /></PrivateRoute>,
+      },
     ],
   },
-  
-
   {
     path: "/dashboard",
     element: <PrivateRoute><Dashboard /></PrivateRoute>,
@@ -67,18 +77,18 @@ export const router = createBrowserRouter([
       { path: "/dashboard/profile", element: <Profile /> },
 
       // Student
-      { path: "/dashboard/student-home", element: <StudentRoute> <StudentHome /></StudentRoute> },
-      { path: "/dashboard/my-enroll-class", element:<StudentRoute> <MyEnrollClass /></StudentRoute> },
-      { path: "/dashboard/my-enroll-class/:id", element: <StudentRoute> <MyEnrollClassDetails /></StudentRoute> },
+      { path: "/dashboard/student-home", element: <StudentRoute><StudentHome /></StudentRoute> },
+      { path: "/dashboard/my-enroll-class", element: <StudentRoute><MyEnrollClass /></StudentRoute> },
+      { path: "/dashboard/my-enroll-class/:id", element: <StudentRoute><MyEnrollClassDetails /></StudentRoute> },
 
       // Teacher
-      { path: "/dashboard/my-teacher-home", element:<TeacherRoute> <TeacherHome /></TeacherRoute> },
-      { path: "/dashboard/add-class", element: <TeacherRoute> <AddClass /></TeacherRoute> },
-      { path: "/dashboard/my-class", element: <TeacherRoute> <MyClass /></TeacherRoute> },
-      { path: "my-class/:id", element: <TeacherRoute> <MyClassDetails /></TeacherRoute> },
+      { path: "/dashboard/my-teacher-home", element: <TeacherRoute><TeacherHome /></TeacherRoute> },
+      { path: "/dashboard/add-class", element: <TeacherRoute><AddClass /></TeacherRoute> },
+      { path: "/dashboard/my-class", element: <TeacherRoute><MyClass /></TeacherRoute> },
+      { path: "/dashboard/my-class/:id", element: <TeacherRoute><MyClassDetails /></TeacherRoute> },
 
       // Admin
-      { path: "/dashboard/admin-home", element: <AdminRoute><AdminHome/></AdminRoute> },
+      { path: "/dashboard/admin-home", element: <AdminRoute><AdminHome /></AdminRoute> },
       { path: "/dashboard/teacher-request", element: <AdminRoute><TeacherRequest /></AdminRoute> },
       { path: "/dashboard/users", element: <AdminRoute><Users /></AdminRoute> },
       { path: "/dashboard/all-classes", element: <AdminRoute><AllAdminClasses /></AdminRoute> },
