@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layout/MainLayout";
-import Dashboard from "../layout/Dashboard"; // your dashboard layout
+import Dashboard from "../layout/Dashboard"; 
 import Home from "../pages/Home/Home";
 import ErrorPage from "../pages/ErrorPage";
 import AllClasses from "../pages/AllClasses";
@@ -20,9 +20,13 @@ import Users from "../pages/Dashboard/Admin/Users";
 import AllAdminClasses from "../pages/Dashboard/Admin/AllClasses";
 import Profile from "../pages/Dashboard/Shared/Profile";
 
-import PrivateRoute from "./PrivateRoute"; // assumes you’ve a private route component
+import PrivateRoute from "./PrivateRoute"; 
 import Login from "../pages/login";
 import Register from "../pages/Register";
+import TeachOnEduNite from "../pages/TeachOnEduNite";
+import StudentRoute from "./StudentRoute";
+import TeacherRoute from "./TeacherRoute";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -46,8 +50,14 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
+      {
+      path:'/teach-on-edunite',
+      element:<PrivateRoute><TeachOnEduNite/></PrivateRoute>,
+    
+  },
     ],
   },
+  
 
   {
     path: "/dashboard",
@@ -57,21 +67,21 @@ export const router = createBrowserRouter([
       { path: "profile", element: <Profile /> },
 
       // Student
-      { path: "/dashboard/student-home", element: <StudentHome /> },
-      { path: "/dashboard/my-enroll-class", element: <MyEnrollClass /> },
-      { path: "/dashboard/my-enroll-class/:id", element: <MyEnrollClassDetails /> },
+      { path: "/dashboard/student-home", element: <StudentRoute> <StudentHome /></StudentRoute> },
+      { path: "/dashboard/my-enroll-class", element:<StudentRoute> <MyEnrollClass /></StudentRoute> },
+      { path: "/dashboard/my-enroll-class/:id", element: <StudentRoute> <MyEnrollClassDetails /></StudentRoute> },
 
       // Teacher
-      { path: "teacherHome", element: <TeacherHome /> },
-      { path: "addClass", element: <AddClass /> },
-      { path: "myClass", element: <MyClass /> },
-      { path: "my-class/:id", element: <MyClassDetails /> },
+      { path: "teacherHome", element:<TeacherRoute> <TeacherHome /></TeacherRoute> },
+      { path: "addClass", element: <TeacherRoute> <AddClass /></TeacherRoute> },
+      { path: "myClass", element: <TeacherRoute> <MyClass /></TeacherRoute> },
+      { path: "my-class/:id", element: <TeacherRoute> <MyClassDetails /></TeacherRoute> },
 
       // Admin
-      { path: "adminHome", element: <AdminHome /> },
-      { path: "teacherRequest", element: <TeacherRequest /> },
-      { path: "users", element: <Users /> },
-      { path: "allClasses", element: <AllAdminClasses /> },
+      { path: "adminHome", element: <AdminRoute><AdminHome/></AdminRoute> },
+      { path: "/dashboard/teacher-request", element: <AdminRoute><TeacherRequest /></AdminRoute> },
+      { path: "/dashboard/users", element: <AdminRoute><Users /></AdminRoute> },
+      { path: "allClasses", element: <AdminRoute><AllAdminClasses /></AdminRoute> },
     ],
   },
 ]);

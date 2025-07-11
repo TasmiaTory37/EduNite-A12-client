@@ -108,7 +108,7 @@ const Register = () => {
   return (
     <div className='flex justify-center items-center my-5'>
       <div className='card bg-base-100 w-full max-w-sm shadow-2xl py-5'>
-        <h2 className='text-center font-bold text-green-700 text-2xl'>Register Here!</h2>
+        <h2 className='text-center font-bold text-blue-700 text-2xl'>Register Here!</h2>
         <form onSubmit={handleSubmit(onSubmit)} className='card-body'>
           <fieldset className='fieldset'>
             <label className='text-base'>Name</label>
@@ -137,7 +137,7 @@ const Register = () => {
               </button>
             </div>
 
-            <button className='btn bg-green-600 text-white mt-4'>Register</button>
+            <button className='btn bg-blue-600 text-white mt-4'>Register</button>
             <button type='button' onClick={handleGoogleLogin} className='btn mt-4'>
               <FaGoogle className='text-blue-800' /> Register With Google
             </button>

@@ -5,9 +5,10 @@ import { AuthContext } from '../Provider/AuthProvider';
 import useAxiosSecure from '../Hook/useAxiosSecure';
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const [dbUser, setDbUser] = useState(null);
+    
 
   useEffect(() => {
     if (user?.email) {
@@ -16,6 +17,7 @@ const Navbar = () => {
         .catch(err => console.error("Error fetching dbUser:", err));
     }
   }, [user, axiosSecure]);
+    if (loading) return null;
 
   return (
     <div>
@@ -38,7 +40,7 @@ const Navbar = () => {
                 <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/all-classes'>All Classes</NavLink></li>
                 <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/contact'>Contact</NavLink></li>
                 {user && (
-                  <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/aboutus'>Teach on EduNite</NavLink></li>
+                  <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/teach-on-edunite'>Teach on EduNite</NavLink></li>
                 )}
               </ul>
             </div>
@@ -55,14 +57,16 @@ const Navbar = () => {
               <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/all-classes'>All Classes</NavLink></li>
               <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/contact'>Contact</NavLink></li>
               {user && (
-                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/aboutus'>Teach on EduNite</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/teach-on-edunite'>Teach on EduNite</NavLink></li>
               )}
             </ul>
           </div>
 
           {/* End */}
           <div className="navbar-end gap-4">
-            {user && user?.email ? (
+            {loading ? (
+              <span className="loading loading-spinner text-primary"></span>
+            ) : user && user?.email ? (
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
