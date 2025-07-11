@@ -64,7 +64,7 @@ export const router = createBrowserRouter([
     element: <PrivateRoute><Dashboard /></PrivateRoute>,
     children: [
       // Shared
-      { path: "profile", element: <Profile /> },
+      { path: "/dashboard/profile", element: <Profile /> },
 
       // Student
       { path: "/dashboard/student-home", element: <StudentRoute> <StudentHome /></StudentRoute> },
@@ -72,16 +72,16 @@ export const router = createBrowserRouter([
       { path: "/dashboard/my-enroll-class/:id", element: <StudentRoute> <MyEnrollClassDetails /></StudentRoute> },
 
       // Teacher
-      { path: "teacherHome", element:<TeacherRoute> <TeacherHome /></TeacherRoute> },
-      { path: "addClass", element: <TeacherRoute> <AddClass /></TeacherRoute> },
-      { path: "myClass", element: <TeacherRoute> <MyClass /></TeacherRoute> },
+      { path: "/dashboard/my-teacher-home", element:<TeacherRoute> <TeacherHome /></TeacherRoute> },
+      { path: "/dashboard/add-class", element: <TeacherRoute> <AddClass /></TeacherRoute> },
+      { path: "/dashboard/my-class", element: <TeacherRoute> <MyClass /></TeacherRoute> },
       { path: "my-class/:id", element: <TeacherRoute> <MyClassDetails /></TeacherRoute> },
 
       // Admin
-      { path: "adminHome", element: <AdminRoute><AdminHome/></AdminRoute> },
+      { path: "/dashboard/admin-home", element: <AdminRoute><AdminHome/></AdminRoute> },
       { path: "/dashboard/teacher-request", element: <AdminRoute><TeacherRequest /></AdminRoute> },
       { path: "/dashboard/users", element: <AdminRoute><Users /></AdminRoute> },
-      { path: "allClasses", element: <AdminRoute><AllAdminClasses /></AdminRoute> },
+      { path: "/dashboard/all-classes", element: <AdminRoute><AllAdminClasses /></AdminRoute> },
     ],
   },
 ]);
