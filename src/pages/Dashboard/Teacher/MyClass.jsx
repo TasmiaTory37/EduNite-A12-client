@@ -4,8 +4,10 @@ import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../Hook/useAxiosSecure';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import { useNavigate } from 'react-router';
 
 const MyClass = () => {
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const [editingClass, setEditingClass] = useState(null);
@@ -81,11 +83,13 @@ const MyClass = () => {
                 <button onClick={() => openEditModal(cls)} className="btn btn-xs btn-outline btn-info">Update</button>
                 <button onClick={() => handleDelete(cls._id)} className="btn btn-xs btn-outline btn-error">Delete</button>
                 <button
-                  disabled={cls.status !== 'approved'}
-                  className={`btn btn-xs ${cls.status === 'approved' ? 'btn-primary' : 'btn-disabled'}`}
-                >
-                  See Details
-                </button>
+                onClick={() => navigate(`/dashboard/my-class/${cls._id}`)}
+                disabled={cls.status !== 'approved'}
+                className={`btn btn-xs ${cls.status === 'approved' ? 'btn-primary' : 'btn-disabled'}`}
+              >
+                See Details
+              </button>
+
               </div>
             </div>
           </div>

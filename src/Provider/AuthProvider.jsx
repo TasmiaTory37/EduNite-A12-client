@@ -7,8 +7,9 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updateProfile, 
+  updateProfile,
 } from 'firebase/auth';
+import axios from 'axios';
 import app from '../firebase/firebase.config';
 
 const auth = getAuth(app);
@@ -16,22 +17,18 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('access-token') || null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
 
-  
+  // ✅ Create user with email & password
   const createNewUser = async (email, password, name, photoURL) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-    
-      await updateProfile(user, {
+      await updateProfile(userCredential.user, {
         displayName: name,
-        photoURL: photoURL,
+        photoURL,
       });
-
       return userCredential;
     } catch (error) {
       console.error("Error creating user: ", error);
@@ -39,69 +36,87 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  // Sign in with Google
-  const handleGoogle = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      return result;
-    } catch (error) {
-      console.error("Google Sign-in Error: ", error);
-      throw error;
-    }
-  };
-
-  // Firebase auth listener
-useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-    if (currentUser) {
-      await currentUser.reload();
-      const freshUser = getAuth().currentUser;
-
-      setUser(freshUser);
-      localStorage.setItem('user', JSON.stringify(freshUser));
-
-      try {
-        const idToken = await freshUser.getIdToken();
-        setToken(idToken);
-      } catch (err) {
-        console.error("Failed to get ID token:", err);
-      }
-    } else {
-      setUser(null);
-      localStorage.removeItem('user');
-      setToken(null);
-    }
-
-    setLoading(false);
-  });
-
-  return () => unsubscribe();
-}, []);
-
-
-
-  // Login with email/password
+  // ✅ Login with email/password
   const userLogin = async (email, password) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const loggedUser = userCredential.user;
+      await handleJWT(loggedUser.email); // Get custom token
+      setUser(loggedUser);
       return userCredential;
     } catch (error) {
-      console.error("Error logging in: ", error);
+      console.error("Login error:", error);
       throw error;
     }
   };
 
-  // Log out
+  // ✅ Login with Google
+  const handleGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const loggedUser = result.user;
+
+      // Optional: Save user to DB
+      await axios.post('http://localhost:3000/users', {
+        name: loggedUser.displayName,
+        email: loggedUser.email,
+        photoURL: loggedUser.photoURL,
+      });
+
+      await handleJWT(loggedUser.email);
+      setUser(loggedUser);
+      return result;
+    } catch (error) {
+      console.error("Google login error:", error);
+      throw error;
+    }
+  };
+
+  // ✅ Get custom JWT and store it
+  const handleJWT = async (email) => {
+    try {
+      const res = await axios.post('http://localhost:3000/jwt', {
+        email: email.toLowerCase().trim(),
+      });
+      const jwtToken = res.data.token;
+      localStorage.setItem('access-token', jwtToken);
+      setToken(jwtToken);
+    } catch (error) {
+      console.error("JWT Error:", error);
+    }
+  };
+
+  // ✅ Logout
   const logOut = async () => {
     try {
       await signOut(auth);
+      setUser(null);
       setToken(null);
+      localStorage.removeItem('access-token');
     } catch (error) {
-      console.error("Error logging out: ", error);
-      throw error;
+      console.error("Logout error:", error);
     }
   };
 
+  // ✅ Firebase auth listener
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        await currentUser.reload();
+        setUser(currentUser);
+        // token is already handled during login
+      } else {
+        setUser(null);
+        setToken(null);
+        localStorage.removeItem('access-token');
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // ✅ Context value
   const info = {
     user,
     token,

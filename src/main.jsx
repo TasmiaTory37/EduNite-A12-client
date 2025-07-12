@@ -5,17 +5,23 @@ import { RouterProvider } from 'react-router';
 import { router } from './router/Router.jsx';
 import AuthProvider from './Provider/AuthProvider.jsx';
 
-// 👇 Import TanStack Query Client
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 
-// 👇 Create a client instance
+// ✅ Correctly load env key
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK);
+
+// TanStack Query
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <RouterProvider router={router} />
+        <Elements stripe={stripePromise}>
+          <RouterProvider router={router} />
+        </Elements>
       </AuthProvider>
     </QueryClientProvider>
   </StrictMode>
