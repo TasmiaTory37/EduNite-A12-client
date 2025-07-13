@@ -47,14 +47,14 @@ const Footer = () => {
         </li>
         <li>
           <NavLink
-            to="/rooms"
+            to="/all-classes"
             className={({ isActive }) =>
               isActive
                 ? "block mb-2 text-blue-300 font-semibold"
                 : "block mb-2 text-white"
             }
           >
-          Rooms
+          All Classes
           </NavLink>
         </li>
 

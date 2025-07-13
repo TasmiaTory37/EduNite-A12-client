@@ -6,38 +6,46 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const MyEnrollClassDetails = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // classId
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
+
   const [assignments, setAssignments] = useState([]);
+  const [submissionValues, setSubmissionValues] = useState({});
+  const [showTERModal, setShowTERModal] = useState(false);
   const [description, setDescription] = useState("");
   const [rating, setRating] = useState(0);
 
+  // Load assignments for this class
   useEffect(() => {
     axiosSecure.get(`/assignments/${id}`).then((res) => setAssignments(res.data));
   }, [id, axiosSecure]);
 
-  const handleSubmit = (assignmentId, value) => {
-    axiosSecure
-      .post(`/submit-assignment/${assignmentId}`, { value })
-      .then(() =>
-        Swal.fire({
-          title: "Submitted!",
-          text: "Your assignment has been submitted.",
-          icon: "success",
-          confirmButtonText: "Okay",
-        })
-      );
+  const handleInputChange = (assignmentId, value) => {
+    setSubmissionValues((prev) => ({ ...prev, [assignmentId]: value }));
+  };
+
+  const handleSubmit = async (assignmentId) => {
+    const value = submissionValues[assignmentId];
+    if (!value) {
+      return Swal.fire("Empty", "Please enter or paste your answer link.", "warning");
+    }
+
+    try {
+      await axiosSecure.post(`/submit-assignment/${assignmentId}`, {
+        answerUrl: value,
+        classId: id,
+      });
+      Swal.fire("Submitted!", "Your assignment has been submitted.", "success");
+      setSubmissionValues((prev) => ({ ...prev, [assignmentId]: "" }));
+    } catch (error) {
+      Swal.fire("Error", "Submission failed. Try again.", "error");
+    }
   };
 
   const handleFeedback = () => {
     if (!description || rating === 0) {
-      return Swal.fire({
-        title: "Missing Info!",
-        text: "Please write feedback and provide a rating.",
-        icon: "warning",
-        confirmButtonText: "Got it",
-      });
+      return Swal.fire("Missing Info", "Write feedback and rate the class.", "warning");
     }
 
     axiosSecure
@@ -49,43 +57,52 @@ const MyEnrollClassDetails = () => {
         userImage: user?.photoURL || "",
       })
       .then(() => {
-        Swal.fire({
-          title: "Thank you!",
-          text: "Your feedback has been submitted.",
-          icon: "success",
-          confirmButtonText: "Great!",
-        });
+        Swal.fire("Thank you!", "Your feedback has been submitted.", "success");
         setDescription("");
         setRating(0);
+        setShowTERModal(false);
+      })
+      .catch(() => {
+        Swal.fire("Error", "Failed to submit feedback.", "error");
       });
   };
 
   return (
-    <div>
+    <div className="p-6 space-y-8">
+      {/* TER Button */}
+      <div className="mb-4">
+        <button onClick={() => setShowTERModal(true)} className="btn btn-info">
+          Teaching Evaluation Report (TER)
+        </button>
+      </div>
+
       <h2 className="text-2xl font-bold mb-4">Assignments</h2>
+
       <table className="w-full border">
         <thead>
           <tr className="bg-gray-200 text-left">
             <th className="p-2">Title</th>
             <th className="p-2">Description</th>
             <th className="p-2">Deadline</th>
-            <th className="p-2">Submission</th>
+            <th className="p-2">Submit</th>
           </tr>
         </thead>
         <tbody>
           {assignments.map((a) => (
-            <tr key={a._id} className="border-b">
+            <tr key={a._id} className="border-b ">
               <td className="p-2">{a.title}</td>
               <td className="p-2">{a.description}</td>
-              <td className="p-2">{a.deadline}</td>
+              <td className="p-2">{new Date(a.deadline).toLocaleDateString()}</td>
               <td className="p-2">
                 <input
                   placeholder="Paste URL or Answer"
-                  className="input input-bordered"
+                  className="input input-bordered w-64"
+                  value={submissionValues[a._id] || ""}
+                  onChange={(e) => handleInputChange(a._id, e.target.value)}
                 />
                 <button
-                  onClick={() => handleSubmit(a._id, "Your answer")}
-                  className="btn btn-sm btn-success ml-2"
+                  onClick={() => handleSubmit(a._id)}
+                  className="btn btn-sm btn-success ml-2 mt-2"
                 >
                   Submit
                 </button>
@@ -95,26 +112,32 @@ const MyEnrollClassDetails = () => {
         </tbody>
       </table>
 
-      <div className="mt-8">
-        <h3 className="text-lg font-bold">Teaching Evaluation Report (TER)</h3>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="textarea textarea-bordered w-full mt-2"
-          placeholder="Write your feedback"
-        ></textarea>
-        <div className="my-3">
-          <Rating
-            initialRating={rating}
-            onChange={setRating}
-            emptySymbol={<span className="text-gray-400 text-2xl">☆</span>}
-            fullSymbol={<span className="text-yellow-400 text-2xl">★</span>}
-          />
+      {/* TER Modal */}
+      {showTERModal && (
+        <div className="fixed inset-0 bg-white bg-opacity-40 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded w-full max-w-lg space-y-4 shadow">
+            <h3 className="text-lg font-bold">Teaching Evaluation Report (TER)</h3>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="textarea textarea-bordered w-full"
+              placeholder="Write your feedback"
+            ></textarea>
+            <div className="my-2">
+              <Rating
+                initialRating={rating}
+                onChange={setRating}
+                emptySymbol={<span className="text-gray-400 text-2xl">☆</span>}
+                fullSymbol={<span className="text-yellow-400 text-2xl">★</span>}
+              />
+            </div>
+            <div className="flex justify-end gap-3">
+              <button className="btn" onClick={() => setShowTERModal(false)}>Cancel</button>
+              <button className="btn btn-primary" onClick={handleFeedback}>Send</button>
+            </div>
+          </div>
         </div>
-        <button onClick={handleFeedback} className="btn btn-primary">
-          Send
-        </button>
-      </div>
+      )}
     </div>
   );
 };

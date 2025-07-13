@@ -16,19 +16,16 @@ const MyClassDetails = () => {
     deadline: ''
   });
 
-  // Fetch all info
+  // Fetch all data
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Get assignments for this class
         const res = await axiosSecure.get(`/assignments/${id}`);
         setAssignments(res.data);
 
-        // Get class data (for enrollCount)
         const classRes = await axiosSecure.get(`/classes/${id}`);
         setEnrollCount(classRes.data.enrollCount || 0);
 
-        // Get submission count
         const subRes = await axiosSecure.get(`/submissions/count/${id}`);
         setSubmissionCount(subRes.data.count || 0);
       } catch (err) {
@@ -38,28 +35,32 @@ const MyClassDetails = () => {
     fetchData();
   }, [id, axiosSecure]);
 
-  // Handle create assignment
+  // Handle Add Assignment
   const handleAddAssignment = async () => {
+    const assignmentData = {
+      ...formData,
+      classId: id
+    };
+
     try {
-      await axiosSecure.post('/assignments', {
-        ...formData,
-        classId: id
-      });
+      const res = await axiosSecure.post('/assignments', assignmentData);
+      console.log("Assignment Created:", res.data);
+
       setShowModal(false);
-      Swal.fire('Success!', 'Assignment created.', 'success');
+      Swal.fire('Success!', 'Assignment created successfully.', 'success');
       setFormData({ title: '', description: '', deadline: '' });
 
-      // Refresh assignments
-      const res = await axiosSecure.get(`/assignments/${id}`);
-      setAssignments(res.data);
+      const updated = await axiosSecure.get(`/assignments/${id}`);
+      setAssignments(updated.data);
     } catch (err) {
+      console.error("Assignment Error:", err.response?.data || err.message);
       Swal.fire('Error', 'Failed to create assignment.', 'error');
     }
   };
 
   return (
     <div className="p-6 space-y-8">
-      {/* Progress Cards */}
+      {/* Stats */}
       <div className="grid md:grid-cols-3 gap-6 text-center">
         <div className="bg-blue-100 p-6 rounded shadow">
           <h3 className="text-xl font-bold">Total Enrollments</h3>
@@ -104,8 +105,8 @@ const MyClassDetails = () => {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded w-full max-w-md space-y-4">
+        <div className="fixed inset-0 bg-white bg-opacity-30 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded w-full max-w-md space-y-4 shadow-lg">
             <h3 className="text-lg font-bold">Add Assignment</h3>
             <input
               type="text"
