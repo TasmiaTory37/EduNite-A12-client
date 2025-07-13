@@ -1,12 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import { FaChalkboardTeacher, FaGlobe, FaClock, FaStar } from 'react-icons/fa';
-import teacherImg from '../../assets/tutor.jpg'; // Add your teacher image here
+import teacherImg from '../../assets/tutor.jpg';
 
 const Teacher = () => {
+  const navigate = useNavigate();
+
+  const handleApplyClick = () => {
+    navigate('/teach-on-edunite');
+  };
+
   return (
     <section className="py-16 px-6 md:px-10">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        
+
         {/* Left: Image */}
         <div className="w-full">
           <img
@@ -44,7 +51,10 @@ const Teacher = () => {
             </div>
           </div>
 
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-lg font-semibold shadow">
+          <button
+            onClick={handleApplyClick}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-lg font-semibold shadow"
+          >
             Apply as a Teacher
           </button>
         </div>

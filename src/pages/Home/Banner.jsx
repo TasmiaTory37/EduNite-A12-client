@@ -29,7 +29,7 @@ const Banner = () => {
             <p className='text-white font-medium sm:font-semibold text-base sm:text-lg'>
               Learn from top instructors and build in-demand skills for your career.
             </p>
-            <Link to='/classes' className="bg-blue-500 text-white hover:bg-blue-600 px-4 sm:px-6 py-2 sm:py-3 rounded font-semibold">
+            <Link to='/all-classes' className="bg-blue-500 text-white hover:bg-blue-600 px-4 sm:px-6 py-2 sm:py-3 rounded font-semibold">
               Browse Classes
             </Link>
           </div>
@@ -42,7 +42,7 @@ const Banner = () => {
             <p className='text-white font-medium sm:font-semibold text-base sm:text-lg'>
               Get hands-on experience through real-world projects guided by mentors.
             </p>
-            <Link to='/classes' className="bg-blue-500 text-white hover:bg-blue-600 px-4 sm:px-6 py-2 sm:py-3 rounded font-semibold">
+            <Link to='/all-classes' className="bg-blue-500 text-white hover:bg-blue-600 px-4 sm:px-6 py-2 sm:py-3 rounded font-semibold">
               Start Learning
             </Link>
           </div>
@@ -55,7 +55,7 @@ const Banner = () => {
             <p className='text-white font-medium sm:font-semibold text-base sm:text-lg'>
               Complete courses and earn certificates that boost your resume and confidence.
             </p>
-            <Link to='/classes' className="bg-blue-500 text-white hover:bg-blue-600 px-4 sm:px-6 py-2 sm:py-3 rounded font-semibold">
+            <Link to='/all-classes' className="bg-blue-500 text-white hover:bg-blue-600 px-4 sm:px-6 py-2 sm:py-3 rounded font-semibold">
               Join Now
             </Link>
           </div>
