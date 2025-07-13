@@ -62,11 +62,11 @@ const Contact = () => {
             </div>
             <div>
               <h4 className="text-xl font-semibold text-blue-800 mb-1">Phone</h4>
-              <p>+880 1234 567 890</p>
+              <p> +1 (555) 123-4567</p>
             </div>
             <div>
               <h4 className="text-xl font-semibold text-blue-800 mb-1">Office</h4>
-              <p>House 23, Road 10, Dhanmondi, Dhaka, Bangladesh</p>
+              <p> Green Street, Green City</p>
             </div>
           </div>
         </div>

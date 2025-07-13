@@ -31,18 +31,30 @@ const PopularCourses = () => {
         modules={[Pagination]}
       >
         {courses.map(cls => (
-          <SwiperSlide key={cls._id}>
-            <div className="bg-white shadow rounded overflow-hidden">
-              <img src={cls.image} alt={cls.title} className="h-48 w-full object-cover" />
-              <div className="p-4">
-                <h3 className="text-lg font-bold">{cls.title}</h3>
-                <p className="text-sm text-gray-600 line-clamp-2">{cls.description}</p>
-                <p className="text-sm font-semibold mt-2 text-green-600">
-                  Enrolled: {cls.enrollCount}
+        <SwiperSlide key={cls._id}>
+            <div className="h-[350px] bg-white shadow-sm rounded-md overflow-hidden flex flex-col">
+                <div className="h-48 w-full">
+                <img
+                    src={cls.image}
+                    alt={cls.title}
+                    className="w-full h-full object-cover"
+                />
+                </div>
+                <div className="flex-1 px-3 py-2 flex flex-col gap-2">
+                <div>
+                    <h3 className="text-base font-semibold mb-1">{cls.title}</h3>
+                    <p className="text-sm text-gray-600 line-clamp-3 leading-snug">
+                    {cls.description}
+                    </p>
+                </div>
+                <p className="text-sm font-medium text-green-600">
+                    Enrolled: {cls.enrollCount}
                 </p>
-              </div>
+                </div>
             </div>
-          </SwiperSlide>
+        </SwiperSlide>
+
+
         ))}
       </Swiper>
     </div>

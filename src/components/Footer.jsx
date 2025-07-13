@@ -10,7 +10,7 @@ const Footer = () => {
         {/* Contact Info */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Contact Us</h3>
-          <p>Email: <a href="mailto:info@edunite.com" className="underline">info@edunite.com</a></p>
+          <p>Email: <a href="mailto:info@edunite.com" className="underline">support@edunite.com</a></p>
           <p>Phone: +1 (555) 123-4567</p>
           <p>Location: Green Street, Green City</p>
         </div>

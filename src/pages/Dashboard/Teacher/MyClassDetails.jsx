@@ -64,15 +64,15 @@ const MyClassDetails = () => {
       <div className="grid md:grid-cols-3 gap-6 text-center">
         <div className="bg-blue-100 p-6 rounded shadow">
           <h3 className="text-xl font-bold">Total Enrollments</h3>
-          <p className="text-3xl text-blue-600">{enrollCount}</p>
+          <p className="text-3xl ">{enrollCount}</p>
         </div>
         <div className="bg-green-100 p-6 rounded shadow">
           <h3 className="text-xl font-bold">Total Assignments</h3>
-          <p className="text-3xl text-green-600">{assignments.length}</p>
+          <p className="text-3xl ">{assignments.length}</p>
         </div>
         <div className="bg-purple-100 p-6 rounded shadow">
           <h3 className="text-xl font-bold">Total Submissions</h3>
-          <p className="text-3xl text-purple-600">{submissionCount}</p>
+          <p className="text-3xl ">{submissionCount}</p>
         </div>
       </div>
 

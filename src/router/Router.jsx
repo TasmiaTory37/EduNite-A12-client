@@ -32,6 +32,8 @@ import StudentRoute from "./StudentRoute";
 import TeacherRoute from "./TeacherRoute";
 import AdminRoute from "./AdminRoute";
 import Contact from "../pages/Contact";
+import ClassProgress from "../pages/Dashboard/Admin/ClassProgress";
+import AboutUs from "../pages/AboutUs";
 
 
 export const router = createBrowserRouter([
@@ -53,7 +55,11 @@ export const router = createBrowserRouter([
         element:<Contact></Contact>
       },
       {
-        path: "/class/:id", // 
+        path:'/aboutus',
+        element:<AboutUs/>
+      },
+      {
+        path: "/class/:id", 
         element: <PrivateRoute><ClassDetails /></PrivateRoute>,
       },
       {
@@ -97,6 +103,8 @@ export const router = createBrowserRouter([
       { path: "/dashboard/teacher-request", element: <AdminRoute><TeacherRequest /></AdminRoute> },
       { path: "/dashboard/users", element: <AdminRoute><Users /></AdminRoute> },
       { path: "/dashboard/all-classes", element: <AdminRoute><AllAdminClasses /></AdminRoute> },
+      { path:"/dashboard/class-progress/:id" ,element:<AdminRoute><ClassProgress/></AdminRoute>},
+
     ],
   },
 ]);

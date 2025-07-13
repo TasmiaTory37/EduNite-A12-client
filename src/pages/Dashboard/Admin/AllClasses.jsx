@@ -1,9 +1,11 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hook/useAxiosSecure';
+import { useNavigate } from 'react-router';
 
 const AllClasses = () => {
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const { data: classes = [], isLoading, refetch } = useQuery({
     queryKey: ['all-classes'],
@@ -20,6 +22,10 @@ const AllClasses = () => {
     } catch (error) {
       console.error('Status update failed', error);
     }
+  };
+
+  const handleViewProgress = (classId) => {
+    navigate(`/dashboard/class-progress/${classId}`);
   };
 
   if (isLoading) return <div className="text-center py-10 font-semibold">Loading classes...</div>;
@@ -50,7 +56,9 @@ const AllClasses = () => {
                 <td className="p-3">{cls.email}</td>
                 <td className="p-3">{cls.description?.slice(0, 50)}...</td>
                 <td className="p-3">
-                  <span className={`px-3 py-1 rounded-full text-white text-xs font-medium ${cls.status === 'approved' ? 'bg-green-500' : cls.status === 'rejected' ? 'bg-red-500' : 'bg-yellow-500'}`}>{cls.status}</span>
+                  <span className={`px-3 py-1 rounded-full text-white text-xs font-medium ${cls.status === 'approved' ? 'bg-green-500' : cls.status === 'rejected' ? 'bg-red-500' : 'bg-yellow-500'}`}>
+                    {cls.status}
+                  </span>
                 </td>
                 <td className="p-3 space-x-2">
                   <button
@@ -71,6 +79,7 @@ const AllClasses = () => {
                 <td className="p-3">
                   <button
                     disabled={cls.status !== 'approved'}
+                    onClick={() => handleViewProgress(cls._id)}
                     className={`px-3 py-1 text-xs rounded ${cls.status === 'approved' ? 'bg-blue-500 text-white hover:bg-blue-600' : 'bg-gray-200 text-gray-500 cursor-not-allowed'}`}
                   >
                     View Progress

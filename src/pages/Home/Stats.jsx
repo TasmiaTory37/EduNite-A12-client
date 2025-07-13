@@ -24,23 +24,23 @@ const Stats = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <div className={`${cardStyles}`}>
+        <div className='bg-blue-100 p-6 rounded shadow text-center'>
           <h3 className="text-xl font-semibold text-gray-600 mb-2">Total Users</h3>
-          <p className="text-4xl font-bold text-green-600">
+          <p className="text-4xl font-bold ">
             <CountUp end={stats.users} duration={2} separator="," />
           </p>
         </div>
 
-        <div className={`${cardStyles}`}>
+        <div className='bg-green-100 p-6 rounded shadow text-center'>
           <h3 className="text-xl font-semibold text-gray-600 mb-2">Total Classes</h3>
-          <p className="text-4xl font-bold text-blue-600">
+          <p className="text-4xl font-bold">
             <CountUp end={stats.classes} duration={2} separator="," />
           </p>
         </div>
 
-        <div className={`${cardStyles} `}>
+        <div className='bg-purple-100 p-6 rounded shadow text-center'>
           <h3 className="text-xl font-semibold text-gray-600 mb-2">Total Enrollments</h3>
-          <p className="text-4xl font-bold text-purple-600">
+          <p className="text-4xl font-bold">
             <CountUp end={stats.enrollments} duration={2} separator="," />
           </p>
         </div>
