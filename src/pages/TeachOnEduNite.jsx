@@ -162,7 +162,7 @@ const TeachOnEduNite = () => {
         <select {...register("category", { required: true })} className="select select-bordered w-full">
           <option value="">Select Category</option>
           <option value="Web Development">Web Development</option>
-          <option value="Digital Marketing">Digital Marketing</option>
+          <option value="App Development">App Development</option>
           <option value="Graphic Design">Graphic Design</option>
           <option value="SQA">SQA</option>
           <option value="Data Science">Data Science</option>

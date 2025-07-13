@@ -74,7 +74,7 @@ const MyClass = () => {
               <h3 className="text-lg font-semibold">{cls.title}</h3>
               <p><strong>Name:</strong> {cls.name}</p>
               <p><strong>Email:</strong> {cls.email}</p>
-              <p><strong>Price:</strong> ৳{cls.price}</p>
+              <p><strong>Price:</strong> ${cls.price}</p>
               <p><strong>Description:</strong> {cls.description}</p>
               <span className={`inline-block px-3 py-1 text-sm font-medium rounded-full ${cls.status === 'approved' ? 'bg-green-500 text-white' : cls.status === 'rejected' ? 'bg-red-500 text-white' : 'bg-yellow-500 text-black'}`}>
                 {cls.status}
