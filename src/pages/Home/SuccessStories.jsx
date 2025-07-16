@@ -33,29 +33,29 @@ const stories = [
 
 const SuccessStories = () => {
   return (
-    <section className="bg-white py-24 px-5">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-center text-gray-900 mb-14">
+    <section className="py-10 md:py-12 lg:py-16">
+      <div className="max-w-5xl mx-auto px-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-indigo-600">
           Student Success Stories
         </h2>
         <Swiper
           modules={[Pagination, Autoplay]}
           pagination={{ clickable: true }}
           autoplay={{ delay: 4000 }}
-          spaceBetween={30}
+          spaceBetween={20}
           slidesPerView={1}
           loop={true}
         >
           {stories.map((student, index) => (
             <SwiperSlide key={index}>
-              <div className="h-full bg-white rounded-xl border border-gray-200 shadow-md p-8 flex flex-col items-center text-center max-w-xl mx-auto transition-all duration-300 hover:shadow-lg">
+              <div className="bg-white rounded-xl border border-gray-200 shadow-md p-6 sm:p-8 flex flex-col items-center text-center max-w-xl mx-auto transition-all duration-300 hover:shadow-lg">
                 <img
                   src={student.image}
                   alt={student.name}
-                  className="w-24 h-24 rounded-full object-cover border-4 border-blue-100 mb-6"
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-4 border-blue-100 mb-4 sm:mb-6"
                 />
-                <h3 className="text-2xl font-semibold text-gray-800">{student.name}</h3>
-                <p className="text-sm text-blue-600 mb-4">{student.role}</p>
+                <h3 className="text-xl sm:text-2xl font-semibold text-gray-800">{student.name}</h3>
+                <p className="text-sm text-blue-600 mb-3 sm:mb-4">{student.role}</p>
                 <p className="text-gray-600 text-base leading-relaxed">{student.story}</p>
               </div>
             </SwiperSlide>

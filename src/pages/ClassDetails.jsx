@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router'; 
+import { useParams, useNavigate } from 'react-router';
 import useAxiosSecure from '../Hook/useAxiosSecure';
 
 const ClassDetails = () => {
@@ -19,12 +19,16 @@ const ClassDetails = () => {
   return (
     <div className="max-w-4xl mx-auto py-10 px-5">
       <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-200">
+
+        {/* Fixed-size image with object-cover */}
         <img
           src={cls.image}
           alt={cls.title}
-          className="w-full h-60 object-cover"
+          className="w-full h-[380 px] object-cover rounded-t-xl"
         />
-        <div className="p-6">
+
+        {/* Class Details */}
+        <div className="p-6 space-y-2">
           <h2 className="text-3xl font-bold text-blue-700 mb-3">{cls.title}</h2>
           <p><strong>Instructor:</strong> {cls.name}</p>
           <p><strong>Email:</strong> {cls.email}</p>

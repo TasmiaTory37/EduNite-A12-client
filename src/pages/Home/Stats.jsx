@@ -12,35 +12,35 @@ const Stats = () => {
       .catch(err => console.error('Stats load failed:', err));
   }, [axiosSecure]);
 
-  const cardStyles = "bg-white p-6 rounded-xl shadow-md text-center ";
-
   return (
-    <section className="bg-gray-50 py-16 px-4">
-      <div className="max-w-6xl mx-auto text-center mb-12">
-        <h2 className="text-4xl font-bold text-blue-700">Powering Progress in Online Learning</h2>
-        <p className="text-gray-600 mt-3 text-lg">
+    <section className="py-10 md:py-12 lg:py-16">
+      <div className="max-w-6xl mx-auto px-4 text-center mb-12">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-indigo-600">
+          Powering Progress in Online Learning
+        </h2>
+        <p className="text-gray-600 text-base sm:text-lg">
           Explore how EduNite is growing with active users, engaging classes, and student enrollments.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <div className='bg-blue-100 p-6 rounded shadow text-center'>
-          <h3 className="text-xl font-semibold text-gray-600 mb-2">Total Users</h3>
-          <p className="text-4xl font-bold ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto px-4">
+        <div className="bg-blue-100 p-5 sm:p-6 rounded shadow text-center">
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-600 mb-2">Total Users</h3>
+          <p className="text-3xl sm:text-4xl font-bold">
             <CountUp end={stats.users} duration={2} separator="," />
           </p>
         </div>
 
-        <div className='bg-green-100 p-6 rounded shadow text-center'>
-          <h3 className="text-xl font-semibold text-gray-600 mb-2">Total Classes</h3>
-          <p className="text-4xl font-bold">
+        <div className="bg-green-100 p-5 sm:p-6 rounded shadow text-center">
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-600 mb-2">Total Classes</h3>
+          <p className="text-3xl sm:text-4xl font-bold">
             <CountUp end={stats.classes} duration={2} separator="," />
           </p>
         </div>
 
-        <div className='bg-purple-100 p-6 rounded shadow text-center'>
-          <h3 className="text-xl font-semibold text-gray-600 mb-2">Total Enrollments</h3>
-          <p className="text-4xl font-bold">
+        <div className="bg-purple-100 p-5 sm:p-6 rounded shadow text-center">
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-600 mb-2">Total Enrollments</h3>
+          <p className="text-3xl sm:text-4xl font-bold">
             <CountUp end={stats.enrollments} duration={2} separator="," />
           </p>
         </div>

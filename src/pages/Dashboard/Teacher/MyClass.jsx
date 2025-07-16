@@ -1,10 +1,11 @@
-// MyClass.jsx (Updated for Modal-based Update and Confirmed Delete)
 import React, { useContext, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../Hook/useAxiosSecure';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { useNavigate } from 'react-router';
+import usePagination from '../../../Hook/usePagination';
+import Pagination from '../../../components/Pagination';
 
 const MyClass = () => {
   const navigate = useNavigate();
@@ -21,6 +22,13 @@ const MyClass = () => {
       return res.data;
     },
   });
+
+  const {
+    paginatedData,
+    currentPage,
+    totalPages,
+    goToPage
+  } = usePagination(myClasses, 10); // show 10 cards per page
 
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
@@ -67,7 +75,7 @@ const MyClass = () => {
     <div className="p-6">
       <h2 className="text-3xl font-bold mb-6 text-center text-indigo-600">My Classes</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {myClasses.map(cls => (
+        {paginatedData.map(cls => (
           <div key={cls._id} className="bg-white shadow-md rounded-lg overflow-hidden">
             <img src={cls.image} alt={cls.title} className="w-full h-40 object-cover" />
             <div className="p-4 space-y-2">
@@ -83,20 +91,30 @@ const MyClass = () => {
                 <button onClick={() => openEditModal(cls)} className="btn btn-xs btn-outline btn-info">Update</button>
                 <button onClick={() => handleDelete(cls._id)} className="btn btn-xs btn-outline btn-error">Delete</button>
                 <button
-                onClick={() => navigate(`/dashboard/my-class/${cls._id}`)}
-                disabled={cls.status !== 'approved'}
-                className={`btn btn-xs ${cls.status === 'approved' ? 'btn-primary' : 'btn-disabled'}`}
-              >
-                See Details
-              </button>
-
+                  onClick={() => navigate(`/dashboard/my-class/${cls._id}`)}
+                  disabled={cls.status !== 'approved'}
+                  className={`btn btn-xs ${cls.status === 'approved' ? 'btn-primary' : 'btn-disabled'}`}
+                >
+                  See Details
+                </button>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Modal */}
+      {/* Pagination Footer */}
+     
+        <div className="mt-6">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            goToPage={goToPage}
+          />
+        </div>
+  
+
+      {/* Edit Modal */}
       {editingClass && (
         <div className="fixed inset-0 bg-white bg-opacity-40 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded shadow-md w-96 space-y-4">

@@ -1,7 +1,10 @@
+// AllClasses.jsx with Pagination
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hook/useAxiosSecure';
 import { useNavigate } from 'react-router';
+import usePagination from '../../../Hook/usePagination';
+import Pagination from '../../../components/Pagination';
 
 const AllClasses = () => {
   const axiosSecure = useAxiosSecure();
@@ -14,6 +17,13 @@ const AllClasses = () => {
       return res.data;
     },
   });
+
+  const {
+    paginatedData,
+    currentPage,
+    totalPages,
+    goToPage
+  } = usePagination(classes, 10);
 
   const handleStatus = async (id, status) => {
     try {
@@ -47,7 +57,7 @@ const AllClasses = () => {
             </tr>
           </thead>
           <tbody className="text-gray-700">
-            {classes.map(cls => (
+            {paginatedData.map(cls => (
               <tr key={cls._id} className="border-t hover:bg-gray-50 transition">
                 <td className="p-3 font-semibold">{cls.title}</td>
                 <td className="p-3">
@@ -89,6 +99,7 @@ const AllClasses = () => {
             ))}
           </tbody>
         </table>
+        <Pagination currentPage={currentPage} totalPages={totalPages} goToPage={goToPage} />
       </div>
     </div>
   );

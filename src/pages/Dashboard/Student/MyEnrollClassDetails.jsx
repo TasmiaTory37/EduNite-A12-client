@@ -1,9 +1,12 @@
+// MyEnrollClassDetails.jsx with Pagination
 import { useParams } from "react-router";
 import { useEffect, useState, useContext } from "react";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
 import Rating from "react-rating";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import usePagination from "../../../Hook/usePagination";
+import Pagination from "../../../components/Pagination";
 
 const MyEnrollClassDetails = () => {
   const { id } = useParams(); // classId
@@ -16,7 +19,6 @@ const MyEnrollClassDetails = () => {
   const [description, setDescription] = useState("");
   const [rating, setRating] = useState(0);
 
-  // Load assignments for this class
   useEffect(() => {
     axiosSecure.get(`/assignments/${id}`).then((res) => setAssignments(res.data));
   }, [id, axiosSecure]);
@@ -67,6 +69,13 @@ const MyEnrollClassDetails = () => {
       });
   };
 
+  const {
+    paginatedData,
+    currentPage,
+    totalPages,
+    goToPage
+  } = usePagination(assignments, 10);
+
   return (
     <div className="p-6 space-y-8">
       {/* TER Button */}
@@ -88,7 +97,7 @@ const MyEnrollClassDetails = () => {
           </tr>
         </thead>
         <tbody>
-          {assignments.map((a) => (
+          {paginatedData.map((a) => (
             <tr key={a._id} className="border-b ">
               <td className="p-2">{a.title}</td>
               <td className="p-2">{a.description}</td>
@@ -111,6 +120,8 @@ const MyEnrollClassDetails = () => {
           ))}
         </tbody>
       </table>
+
+      <Pagination currentPage={currentPage} totalPages={totalPages} goToPage={goToPage} />
 
       {/* TER Modal */}
       {showTERModal && (

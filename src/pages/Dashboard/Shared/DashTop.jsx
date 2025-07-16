@@ -1,24 +1,33 @@
 import { useContext } from 'react';
-import { Link } from 'react-router';
-
-import { FaSignOutAlt } from 'react-icons/fa';
+import { FaSignOutAlt, FaBars } from 'react-icons/fa';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import logo from '../../../assets/logo.png'; // Assuming you have a logo image
+import logo from '../../../assets/logo.png';
 
-const Dashtop = () => {
+const Dashtop = ({ toggleSidebar }) => {
   const { user, logOut } = useContext(AuthContext);
 
   return (
-    <div className="bg-white px-6 py-3 shadow flex justify-between items-center ">
-        <div className='flex justify-center items-center'>
-            <img src={logo} className='h-[50px] w-[50px]' alt="" />
-      <h2 className="text-2xl font-bold text-blue-600">EduNite</h2>
+   <div className="bg-white px-4 sm:px-6 py-3 shadow flex justify-between items-center fixed top-0 w-full z-40 md:static">
 
-        </div>
-      <div className="flex items-center gap-4">
+      {/* Left: Hamburger + Logo */}
+      <div className="flex items-center gap-3">
+        {/* Hamburger: Only show on mobile */}
+        <button
+          className="md:hidden text-xl text-blue-800"
+          onClick={toggleSidebar}
+        >
+          <FaBars />
+        </button>
+
+        <img src={logo} className="h-10 w-10" alt="EduNite logo" />
+        <h2 className="text-xl font-bold text-blue-600">EduNite</h2>
+      </div>
+
+      {/* Right: Avatar + Logout */}
+      <div className="flex items-center gap-3">
         {user?.photoURL && (
           <img
-            className="w-10 h-10 rounded-full border"
+            className="w-9 h-9 rounded-full border"
             src={user.photoURL}
             alt="profile"
             title={user.displayName || user.email}

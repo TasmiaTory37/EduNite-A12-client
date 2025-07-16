@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
+import usePagination from "../../../Hook/usePagination";
+import Pagination from "../../../components/Pagination";
 
 const Users = () => {
   const axiosSecure = useAxiosSecure();
@@ -28,9 +30,17 @@ const Users = () => {
     }
   };
 
+  const {
+    paginatedData,
+    currentPage,
+    totalPages,
+    goToPage
+  } = usePagination(users, 10); // Show 10 users per page
+
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4">All Users</h2>
+
       <input
         type="text"
         placeholder="Search by name or email"
@@ -38,6 +48,7 @@ const Users = () => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
+
       <div className="overflow-x-auto">
         <table className="table w-full table-zebra">
           <thead>
@@ -49,7 +60,7 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((u) => (
+            {paginatedData.map((u) => (
               <tr key={u._id}>
                 <td>
                   <img
@@ -74,6 +85,12 @@ const Users = () => {
           </tbody>
         </table>
       </div>
+
+      {totalPages > 1 && (
+        <div className="mt-6">
+          <Pagination currentPage={currentPage} totalPages={totalPages} goToPage={goToPage} />
+        </div>
+      )}
     </div>
   );
 };

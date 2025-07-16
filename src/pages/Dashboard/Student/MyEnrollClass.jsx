@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import usePagination from "../../../Hook/usePagination";
+import Pagination from "../../../components/Pagination";
 
 const MyEnrollClass = () => {
   const axiosSecure = useAxiosSecure();
@@ -13,31 +15,62 @@ const MyEnrollClass = () => {
     if (user?.email) {
       axiosSecure.get(`/enrolled-classes?email=${user.email}`)
         .then(res => setClasses(res.data));
-
       axiosSecure.get(`/payments/${user.email}`)
         .then(res => setPayments(res.data));
     }
   }, [axiosSecure, user]);
+
+  // Pagination for enrolled classes
+  const {
+    paginatedData: paginatedClasses,
+    currentPage: classPage,
+    totalPages: classTotalPages,
+    goToPage: goToClassPage
+  } = usePagination(classes, 10); // 10 cards per page
+
+  // Pagination for payment history
+  const {
+    paginatedData: paginatedPayments,
+    currentPage: paymentPage,
+    totalPages: paymentTotalPages,
+    goToPage: goToPaymentPage
+  } = usePagination(payments, 10); // 10 rows per page
 
   return (
     <div className="p-4 space-y-8">
       {/* Enrolled Classes */}
       <h2 className="text-2xl font-bold mb-4">My Enrolled Classes</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {classes.map(cls => (
-          <div key={cls._id} className="bg-white rounded shadow p-4">
-            <img src={cls.image} alt={cls.title} className="h-40 w-full object-cover rounded" />
-            <h3 className="text-xl font-semibold mt-3">{cls.title}</h3>
-            <p className="text-sm text-gray-600">By: {cls.name}</p>
-            <Link
+  {paginatedClasses.map(cls => (
+    <div key={cls._id} className="bg-white rounded shadow flex flex-col h-full">
+      <img
+        src={cls.image}
+        alt={cls.title}
+        className="h-40 w-full object-cover rounded-t"
+      />
+      <div className="p-4 flex flex-col flex-grow justify-between">
+        <div className="space-y-2">
+          <h3 className="text-xl font-semibold">{cls.title}</h3>
+          <p className="text-sm text-gray-600">By: {cls.name}</p>
+        </div>
+          <Link
               to={`/dashboard/my-enroll-class/${cls._id}`}
-              className="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              className="mt-4 bg-blue-500 text-white px-4 py-2 text-center rounded hover:bg-blue-600"
             >
               Continue
             </Link>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
+    </div>
+
+      
+        <Pagination
+          currentPage={classPage}
+          totalPages={classTotalPages}
+          goToPage={goToClassPage}
+        />
+     
 
       {/* Payment History */}
       <h2 className="text-2xl font-bold mt-8 mb-4">Payment History</h2>
@@ -51,7 +84,7 @@ const MyEnrollClass = () => {
           </tr>
         </thead>
         <tbody>
-          {payments.map(p => (
+          {paginatedPayments.map(p => (
             <tr key={p._id} className="text-center">
               <td className="border p-2">{p.classId}</td>
               <td className="border p-2">${(p.amount / 100).toFixed(2)}</td>
@@ -61,6 +94,13 @@ const MyEnrollClass = () => {
           ))}
         </tbody>
       </table>
+     
+        <Pagination
+          currentPage={paymentPage}
+          totalPages={paymentTotalPages}
+          goToPage={goToPaymentPage}
+        />
+      
     </div>
   );
 };

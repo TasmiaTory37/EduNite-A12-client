@@ -93,7 +93,7 @@ export const router = createBrowserRouter([
       { path: "/dashboard/my-enroll-class/:id", element: <StudentRoute><MyEnrollClassDetails /></StudentRoute> },
 
       // Teacher
-      { path: "/dashboard/my-teacher-home", element: <TeacherRoute><TeacherHome /></TeacherRoute> },
+      { path: "/dashboard/teacher-home", element: <TeacherRoute><TeacherHome /></TeacherRoute> },
       { path: "/dashboard/add-class", element: <TeacherRoute><AddClass /></TeacherRoute> },
       { path: "/dashboard/my-class", element: <TeacherRoute><MyClass /></TeacherRoute> },
       { path: "/dashboard/my-class/:id", element: <TeacherRoute><MyClassDetails /></TeacherRoute> },

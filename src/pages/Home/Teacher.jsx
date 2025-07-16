@@ -11,28 +11,29 @@ const Teacher = () => {
   };
 
   return (
-    <section className="py-16 px-6 md:px-10">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    <section className="py-12 md:py-16 lg:py-20">
+      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
         {/* Left: Image */}
-        <div className="w-full">
+        <div className="w-full flex justify-center">
           <img
             src={teacherImg}
             alt="Inspiring teacher"
-            className="rounded-lg shadow-md w-full h-auto object-cover"
+            className="rounded-lg shadow-md w-full max-w-md md:max-w-full h-auto object-cover"
           />
         </div>
 
         {/* Right: Text & CTA */}
         <div className="text-center md:text-left">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-800 mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-indigo-600">
             Inspire Learners, Shape Futures
           </h2>
-          <p className="text-gray-600 mb-6">
+
+          <p className="text-gray-600 mb-6 max-w-xl mx-auto md:mx-0">
             Join our growing platform to teach what you love, connect with global learners, and make a lasting impact — all on your schedule.
           </p>
 
-          <div className="grid grid-cols-2 gap-4 text-blue-800 mb-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 text-blue-800 mb-6 max-w-xs mx-auto md:mx-0">
             <div className="flex items-center gap-2">
               <FaChalkboardTeacher size={20} />
               <span className="text-sm">Teach Passionately</span>
@@ -51,12 +52,14 @@ const Teacher = () => {
             </div>
           </div>
 
-          <button
-            onClick={handleApplyClick}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-lg font-semibold shadow"
-          >
-            Apply as a Teacher
-          </button>
+          <div className="flex justify-center md:justify-start">
+            <button
+              onClick={handleApplyClick}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-lg font-semibold shadow"
+            >
+              Apply as a Teacher
+            </button>
+          </div>
         </div>
       </div>
     </section>

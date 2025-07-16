@@ -2,6 +2,8 @@ import React from 'react';
 import useAxiosSecure from '../../../Hook/useAxiosSecure';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import usePagination from '../../../Hook/usePagination';
+import Pagination from '../../../components/Pagination';
 
 const TeacherRequest = () => {
   const axiosSecure = useAxiosSecure();
@@ -13,6 +15,15 @@ const TeacherRequest = () => {
       return res.data;
     }
   });
+
+  const {
+    paginatedData,
+    currentPage,
+    totalPages,
+    goToPage,
+    prevPage,
+    nextPage
+  } = usePagination(requests, 10);
 
   const { mutate: updateStatus } = useMutation({
     mutationFn: async ({ email, status }) =>
@@ -42,9 +53,9 @@ const TeacherRequest = () => {
           </tr>
         </thead>
         <tbody>
-          {requests.map((req, index) => (
+          {paginatedData.map((req, index) => (
             <tr key={req._id}>
-              <td>{index + 1}</td>
+              <td>{(currentPage - 1) * 10 + index + 1}</td>
               <td>{req.name}</td>
               <td><img src={req.photoURL} alt="" className="w-10 h-10 rounded-full" /></td>
               <td>{req.experience}</td>
@@ -71,6 +82,9 @@ const TeacherRequest = () => {
           ))}
         </tbody>
       </table>
+
+      {/* Pagination Footer */}
+      <Pagination currentPage={currentPage} totalPages={totalPages} goToPage={goToPage} />
     </div>
   );
 };

@@ -36,7 +36,7 @@ const AddClass = () => {
 
   return (
     <div className="max-w-xl mx-auto mt-10 bg-white p-6 shadow rounded">
-      <h2 className="text-2xl font-bold mb-4 text-center">Add New Class</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center text-indigo-600">Add New Class</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <input {...register("title", { required: true })} placeholder="Class Title" className="input input-bordered w-full" />
         <input value={user?.displayName} readOnly className="input input-bordered w-full" />

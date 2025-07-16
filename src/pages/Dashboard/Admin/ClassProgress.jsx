@@ -1,9 +1,12 @@
+// ClassProgress.jsx with Pagination
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
+import usePagination from "../../../Hook/usePagination";
+import Pagination from "../../../components/Pagination";
 
 const ClassProgress = () => {
-  const { id } = useParams(); // classId
+  const { id } = useParams();
   const axiosSecure = useAxiosSecure();
 
   const [enrollCount, setEnrollCount] = useState(0);
@@ -12,22 +15,26 @@ const ClassProgress = () => {
   const [assignments, setAssignments] = useState([]);
 
   useEffect(() => {
-    // Fetch class data
     axiosSecure.get(`/classes/${id}`).then((res) => {
       setEnrollCount(res.data.enrollCount || 0);
     });
 
-    // Fetch assignment count and data
     axiosSecure.get(`/assignments/${id}`).then((res) => {
       setAssignments(res.data);
       setAssignmentCount(res.data.length);
     });
 
-    // Fetch submission count
     axiosSecure.get(`/submissions/count/${id}`).then((res) => {
       setSubmissionCount(res.data.count);
     });
   }, [id, axiosSecure]);
+
+  const {
+    paginatedData,
+    currentPage,
+    totalPages,
+    goToPage
+  } = usePagination(assignments, 10);
 
   return (
     <div className="p-6 space-y-10 max-w-6xl mx-auto">
@@ -35,31 +42,23 @@ const ClassProgress = () => {
         Class Progress Overview
       </h2>
 
-      {/* Progress Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-        <div className="bg-blue-100 p-6 rounded shadow border border-gray-200 ">
-          <h4 className="text-lg font-semibold text-gray-700 mb-1 ">
-            Total Enrollments
-          </h4>
-          <p className="text-2xl font-bold ">{enrollCount}</p>
+        <div className="bg-blue-100 p-6 rounded shadow border border-gray-200">
+          <h4 className="text-lg font-semibold text-gray-700 mb-1">Total Enrollments</h4>
+          <p className="text-2xl font-bold">{enrollCount}</p>
         </div>
 
         <div className="bg-green-100 p-6 rounded shadow border border-gray-200">
-          <h4 className="text-lg font-semibold text-gray-700 mb-1">
-            Total Assignments
-          </h4>
-          <p className="text-2xl font-bold ">{assignmentCount}</p>
+          <h4 className="text-lg font-semibold text-gray-700 mb-1">Total Assignments</h4>
+          <p className="text-2xl font-bold">{assignmentCount}</p>
         </div>
 
         <div className="bg-purple-100 p-6 rounded shadow border border-gray-200">
-          <h4 className="text-lg font-semibold text-gray-700 mb-1">
-            Total Submissions
-          </h4>
+          <h4 className="text-lg font-semibold text-gray-700 mb-1">Total Submissions</h4>
           <p className="text-2xl font-bold">{submissionCount}</p>
         </div>
       </div>
 
-      {/* Assignment Table */}
       <div>
         <h3 className="text-2xl font-semibold mb-4 text-gray-800">
           Assignment List
@@ -77,7 +76,7 @@ const ClassProgress = () => {
                 </tr>
               </thead>
               <tbody className="text-gray-700">
-                {assignments.map((a) => (
+                {paginatedData.map((a) => (
                   <tr key={a._id} className="border-t">
                     <td className="p-3 font-medium">{a.title}</td>
                     <td className="p-3">{a.description}</td>
@@ -88,6 +87,7 @@ const ClassProgress = () => {
                 ))}
               </tbody>
             </table>
+            <Pagination currentPage={currentPage} totalPages={totalPages} goToPage={goToPage} />
           </div>
         )}
       </div>

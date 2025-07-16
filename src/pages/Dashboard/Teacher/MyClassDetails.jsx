@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import useAxiosSecure from '../../../Hook/useAxiosSecure';
 import Swal from 'sweetalert2';
+import usePagination from '../../../Hook/usePagination';
+import Pagination from '../../../components/Pagination';
 
 const MyClassDetails = () => {
   const { id } = useParams(); // classId
@@ -16,7 +18,6 @@ const MyClassDetails = () => {
     deadline: ''
   });
 
-  // Fetch all data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,7 +36,6 @@ const MyClassDetails = () => {
     fetchData();
   }, [id, axiosSecure]);
 
-  // Handle Add Assignment
   const handleAddAssignment = async () => {
     const assignmentData = {
       ...formData,
@@ -57,6 +57,13 @@ const MyClassDetails = () => {
       Swal.fire('Error', 'Failed to create assignment.', 'error');
     }
   };
+
+  const {
+    paginatedData,
+    currentPage,
+    totalPages,
+    goToPage
+  } = usePagination(assignments, 10);
 
   return (
     <div className="p-6 space-y-8">
@@ -92,7 +99,7 @@ const MyClassDetails = () => {
             </tr>
           </thead>
           <tbody>
-            {assignments.map((a) => (
+            {paginatedData.map((a) => (
               <tr key={a._id}>
                 <td>{a.title}</td>
                 <td>{a.description}</td>
@@ -101,6 +108,7 @@ const MyClassDetails = () => {
             ))}
           </tbody>
         </table>
+        <Pagination currentPage={currentPage} totalPages={totalPages} goToPage={goToPage} />
       </div>
 
       {/* Modal */}
