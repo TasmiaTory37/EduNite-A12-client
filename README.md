@@ -1,12 +1,52 @@
-# React + Vite
+## Name of the Website: EduNite
+## Description
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**EduNite** is a full-featured educational platform that connects students, teachers, and admins through a streamlined class management system. It enables class creation, enrollment, assignment tracking, and role-based dashboards—all built with a focus on simplicity, speed, and user experience.
 
-Currently, two official plugins are available:
+## Admin email : eduniteadmin@gmail.com, Password : Admin@edunite2025
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live site : https://edunite-a12.web.app
 
-## Expanding the ESLint configuration
+## Key Features : 
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **User Authentication**  
+  Secure login system using Firebase with support for Email/Password and Google Sign-In.
+
+- **Role-Based Dashboards**  
+  Dynamic interfaces and access control for Admin, Teacher, and Student roles with protected routing.
+
+- **Class Management System**  
+  Teachers can add, update, and delete classes; Admins can approve/reject classes with feedback.
+
+- **Class Enrollment with Payment**  
+  Students can enroll in approved classes using Stripe-integrated secure payment flow.
+
+- **Enrolled Class Tracking**  
+  Students can view enrolled classes, track submissions, and access assignment deadlines.
+
+- **Assignment Management**  
+  Teachers can create assignments; students can submit and view status within class details.
+
+- **Progress Overview**  
+  Teachers and students can monitor enrollments, assignment counts, and submission data.
+
+- **Feedback & Review System**  
+  Students can leave feedback on classes; displayed in carousel on homepage.
+
+- **JWT-Secured API Access**  
+  All protected routes and data are secured using JSON Web Tokens (JWT).
+
+- **Responsive UI Design**  
+  Built with Tailwind CSS and React for smooth, device-friendly user experience.
+
+---
+
+## Tech Stack
+
+- **Frontend:** React.js, React Router, Tailwind CSS, Firebase Auth  
+- **Backend:** Express.js, MongoDB, JWT  
+- **Payment:** Stripe Integration  
+- **Data Fetching & Caching:** Axios, TanStack Query (React Query)
+
+---
+
