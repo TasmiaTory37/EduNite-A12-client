@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 
 const axiosSecure = axios.create({
-  baseURL: 'http://localhost:3000', // ✅ Update to your correct backend port
+  baseURL: 'https://assignment-12-server-psi-jade.vercel.app', // ✅ Update to your correct backend port
 });
 
 const useAxiosSecure = () => {

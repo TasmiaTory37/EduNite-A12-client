@@ -6,6 +6,9 @@ import { useMutation } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 
 const TeachOnEduNite = () => {
+   useEffect(() => {
+            document.title = "EduNite | Teach on EduNite"; 
+          }, []);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const [statusInfo, setStatusInfo] = useState(null);

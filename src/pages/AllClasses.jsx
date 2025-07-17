@@ -6,6 +6,9 @@ import usePagination from '../Hook/usePagination';
 import Pagination from '../components/Pagination';
 
 const AllClasses = () => {
+  useEffect(() => {
+        document.title = "EduNite | All Classes"; 
+      }, []);
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 

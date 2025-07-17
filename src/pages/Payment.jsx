@@ -4,6 +4,9 @@ import useAxiosSecure from '../Hook/useAxiosSecure';
 import CheckoutForm from '../components/Payments/CheckoutForm';
 
 const Payment = () => {
+   useEffect(() => {
+            document.title = "EduNite | Payment"; 
+          }, []);
   const { id: classId } = useParams();
   const axiosSecure = useAxiosSecure();
   const [cls, setCls] = useState(null);

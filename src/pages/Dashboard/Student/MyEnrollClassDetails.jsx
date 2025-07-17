@@ -1,4 +1,3 @@
-// MyEnrollClassDetails.jsx with Pagination
 import { useParams } from "react-router";
 import { useEffect, useState, useContext } from "react";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
@@ -9,19 +8,29 @@ import usePagination from "../../../Hook/usePagination";
 import Pagination from "../../../components/Pagination";
 
 const MyEnrollClassDetails = () => {
+   useEffect(() => {
+            document.title = "EduNite | My Enroll Class Details"; 
+          }, []);
   const { id } = useParams(); // classId
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
 
   const [assignments, setAssignments] = useState([]);
   const [submissionValues, setSubmissionValues] = useState({});
+  const [submittedAssignments, setSubmittedAssignments] = useState([]);
   const [showTERModal, setShowTERModal] = useState(false);
   const [description, setDescription] = useState("");
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
     axiosSecure.get(`/assignments/${id}`).then((res) => setAssignments(res.data));
-  }, [id, axiosSecure]);
+
+    // OPTIONAL: preload submitted assignments from server (if supported)
+    axiosSecure
+      .get(`/submitted-assignment-ids/${id}?email=${user.email}`)
+      .then((res) => setSubmittedAssignments(res.data || []))
+      .catch(() => setSubmittedAssignments([]));
+  }, [id, axiosSecure, user]);
 
   const handleInputChange = (assignmentId, value) => {
     setSubmissionValues((prev) => ({ ...prev, [assignmentId]: value }));
@@ -39,7 +48,10 @@ const MyEnrollClassDetails = () => {
         classId: id,
       });
       Swal.fire("Submitted!", "Your assignment has been submitted.", "success");
+
+      // Clear input and mark as submitted
       setSubmissionValues((prev) => ({ ...prev, [assignmentId]: "" }));
+      setSubmittedAssignments((prev) => [...prev, assignmentId]);
     } catch (error) {
       Swal.fire("Error", "Submission failed. Try again.", "error");
     }
@@ -73,7 +85,7 @@ const MyEnrollClassDetails = () => {
     paginatedData,
     currentPage,
     totalPages,
-    goToPage
+    goToPage,
   } = usePagination(assignments, 10);
 
   return (
@@ -98,7 +110,7 @@ const MyEnrollClassDetails = () => {
         </thead>
         <tbody>
           {paginatedData.map((a) => (
-            <tr key={a._id} className="border-b ">
+            <tr key={a._id} className="border-b">
               <td className="p-2">{a.title}</td>
               <td className="p-2">{a.description}</td>
               <td className="p-2">{new Date(a.deadline).toLocaleDateString()}</td>
@@ -108,12 +120,14 @@ const MyEnrollClassDetails = () => {
                   className="input input-bordered w-64"
                   value={submissionValues[a._id] || ""}
                   onChange={(e) => handleInputChange(a._id, e.target.value)}
+                  disabled={submittedAssignments.includes(a._id)}
                 />
                 <button
                   onClick={() => handleSubmit(a._id)}
                   className="btn btn-sm btn-success ml-2 mt-2"
+                  disabled={submittedAssignments.includes(a._id)}
                 >
-                  Submit
+                  {submittedAssignments.includes(a._id) ? "Submitted" : "Submit"}
                 </button>
               </td>
             </tr>
@@ -143,8 +157,12 @@ const MyEnrollClassDetails = () => {
               />
             </div>
             <div className="flex justify-end gap-3">
-              <button className="btn" onClick={() => setShowTERModal(false)}>Cancel</button>
-              <button className="btn btn-primary" onClick={handleFeedback}>Send</button>
+              <button className="btn" onClick={() => setShowTERModal(false)}>
+                Cancel
+              </button>
+              <button className="btn btn-primary" onClick={handleFeedback}>
+                Send
+              </button>
             </div>
           </div>
         </div>

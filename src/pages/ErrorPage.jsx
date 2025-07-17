@@ -6,7 +6,7 @@ import error from '../assets/error.jpg';
 
 const ErrorPage = () => {
    useEffect(() => {
-      document.title = "EduManage | 404 Error"; 
+      document.title = "EduNite | 404 Error"; 
     }, []);
   const navigate = useNavigate();
 

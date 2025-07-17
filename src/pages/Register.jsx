@@ -46,9 +46,9 @@ const Register = () => {
         role: 'student',
       };
 
-      await axios.post('http://localhost:3000/users', userInfo);
+      await axios.post('https://assignment-12-server-psi-jade.vercel.app/users', userInfo);
 
-      const tokenRes = await axios.post('http://localhost:3000/jwt', { email });
+      const tokenRes = await axios.post('https://assignment-12-server-psi-jade.vercel.app/jwt', { email });
       localStorage.setItem('access-token', tokenRes.data.token);
 
       Swal.fire({
@@ -82,8 +82,8 @@ const Register = () => {
           role: 'student',
         };
 
-        await axios.post('http://localhost:3000/users', userInfo);
-        const tokenRes = await axios.post('http://localhost:3000/jwt', { email: user.email });
+        await axios.post('https://assignment-12-server-psi-jade.vercel.app/users', userInfo);
+        const tokenRes = await axios.post('https://assignment-12-server-psi-jade.vercel.app/jwt', { email: user.email });
         localStorage.setItem('access-token', tokenRes.data.token);
 
         Swal.fire({

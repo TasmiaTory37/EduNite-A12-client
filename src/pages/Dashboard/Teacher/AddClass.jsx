@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
@@ -6,6 +6,9 @@ import { AuthContext } from '../../../Provider/AuthProvider';
 import useAxiosSecure from '../../../Hook/useAxiosSecure';
 
 const AddClass = () => {
+   useEffect(() => {
+            document.title = "EduNite | Add Class"; 
+          }, []);
   const { user } = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();

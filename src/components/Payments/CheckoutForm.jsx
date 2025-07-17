@@ -28,7 +28,7 @@ const CheckoutForm = ({ amount, classId }) => {
 
     try {
       // Step 1: Create PaymentIntent
-      const { data } = await axios.post('http://localhost:3000/create-payment-intent', {
+      const { data } = await axios.post('https://assignment-12-server-psi-jade.vercel.app/create-payment-intent', {
         amount,
       });
 

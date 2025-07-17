@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
       const loggedUser = result.user;
 
       // Optional: Save user to DB
-      await axios.post('http://localhost:3000/users', {
+      await axios.post('https://assignment-12-server-psi-jade.vercel.app/users', {
         name: loggedUser.displayName,
         email: loggedUser.email,
         photoURL: loggedUser.photoURL,
@@ -72,10 +72,10 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  // ✅ Get custom JWT and store it
+  //  Get custom JWT and store it
   const handleJWT = async (email) => {
     try {
-      const res = await axios.post('http://localhost:3000/jwt', {
+      const res = await axios.post('https://assignment-12-server-psi-jade.vercel.app/jwt', {
         email: email.toLowerCase().trim(),
       });
       const jwtToken = res.data.token;
@@ -86,7 +86,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  // ✅ Logout
+  // Logout
   const logOut = async () => {
     try {
       await signOut(auth);
@@ -98,7 +98,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  // ✅ Firebase auth listener
+  // Firebase auth listener
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
@@ -116,7 +116,7 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // ✅ Context value
+  // Context value
   const info = {
     user,
     token,

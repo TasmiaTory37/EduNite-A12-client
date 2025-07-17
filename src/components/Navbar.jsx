@@ -83,7 +83,20 @@ const Navbar = () => {
                   <li className="text-center font-semibold text-gray-700 pointer-events-none">
                     {user?.displayName || dbUser?.name || user?.email}
                   </li>
-                  <li><Link to="/dashboard">Dashboard</Link></li>
+                  <li>
+                    <Link
+                      to={
+                        dbUser?.role === 'admin'
+                          ? '/dashboard/admin-home'
+                          : dbUser?.role === 'teacher'
+                          ? '/dashboard/teacher-home'
+                          : '/dashboard/student-home'
+                      }
+                    >
+                      Dashboard
+                    </Link>
+                  </li>
+
                   <li><button onClick={logOut}>Logout</button></li>
                 </ul>
               </div>

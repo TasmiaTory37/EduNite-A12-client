@@ -10,7 +10,7 @@ const useRole = () => {
     enabled: !!user?.email,
     queryFn: async () => {
       const token = localStorage.getItem('access-token');
-      const res = await fetch(`http://localhost:3000/users/${user.email}`, {
+      const res = await fetch(`https://assignment-12-server-psi-jade.vercel.app/users/${user.email}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },

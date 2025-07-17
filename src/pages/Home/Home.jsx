@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Banner from './Banner';
 import Partner from './Partner';
 import Teacher from './Teacher';
@@ -9,6 +9,9 @@ import Feedback from './Feedback';
 import Achievements from './Stats';
 
 const Home = () => {
+    useEffect(() => {
+          document.title = "EduNite | Home"; 
+        }, []);
     return (
         <div>
             <Banner />

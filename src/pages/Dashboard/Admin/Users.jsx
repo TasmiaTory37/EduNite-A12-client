@@ -4,6 +4,9 @@ import usePagination from "../../../Hook/usePagination";
 import Pagination from "../../../components/Pagination";
 
 const Users = () => {
+   useEffect(() => {
+            document.title = "EduNite | Users"; 
+          }, []);
   const axiosSecure = useAxiosSecure();
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useAxiosSecure from '../../../Hook/useAxiosSecure';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
@@ -6,6 +6,9 @@ import usePagination from '../../../Hook/usePagination';
 import Pagination from '../../../components/Pagination';
 
 const TeacherRequest = () => {
+   useEffect(() => {
+            document.title = "EduNite | Teacher Request"; 
+          }, []);
   const axiosSecure = useAxiosSecure();
 
   const { data: requests = [], refetch } = useQuery({

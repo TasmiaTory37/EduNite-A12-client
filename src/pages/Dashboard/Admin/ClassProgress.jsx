@@ -1,4 +1,3 @@
-// ClassProgress.jsx with Pagination
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
@@ -6,6 +5,9 @@ import usePagination from "../../../Hook/usePagination";
 import Pagination from "../../../components/Pagination";
 
 const ClassProgress = () => {
+   useEffect(() => {
+            document.title = "EduNite | Class Progress"; 
+          }, []);
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
 

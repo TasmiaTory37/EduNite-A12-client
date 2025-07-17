@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Contact = () => {
+   useEffect(() => {
+            document.title = "EduNite | Contact"; 
+          }, []);
   return (
     <section className="py-20 px-6 md:px-10 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-blue-800 mb-4">Get in Touch</h2>
+          <h2 className="text-4xl font-bold text-indigo-600 mb-4">Get in Touch</h2>
           <p className="text-gray-600 max-w-xl mx-auto">
             Have questions, feedback, or partnership ideas? We’d love to hear from you.
           </p>
@@ -57,15 +60,15 @@ const Contact = () => {
           {/* Contact Info */}
           <div className="flex flex-col justify-center space-y-6 text-gray-700">
             <div>
-              <h4 className="text-xl font-semibold text-blue-800 mb-1">Email</h4>
+              <h4 className="text-xl font-semibold text-indigo-600 mb-1">Email</h4>
               <p>support@edunite.com</p>
             </div>
             <div>
-              <h4 className="text-xl font-semibold text-blue-800 mb-1">Phone</h4>
+              <h4 className="text-xl font-semibold text-indigo-600 mb-1">Phone</h4>
               <p> +1 (555) 123-4567</p>
             </div>
             <div>
-              <h4 className="text-xl font-semibold text-blue-800 mb-1">Office</h4>
+              <h4 className="text-xl font-semibold text-indigo-600 mb-1">Office</h4>
               <p> Green Street, Green City</p>
             </div>
           </div>

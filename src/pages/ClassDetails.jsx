@@ -7,8 +7,12 @@ const ClassDetails = () => {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const [cls, setCls] = useState(null);
+   useEffect(() => {
+          document.title = "EduNite | Class Details"; 
+        }, []);
 
   useEffect(() => {
+   
     axiosSecure.get(`/classes/${id}`)
       .then(res => setCls(res.data))
       .catch(err => console.error("Failed to load class", err));
@@ -24,7 +28,7 @@ const ClassDetails = () => {
         <img
           src={cls.image}
           alt={cls.title}
-          className="w-full h-[380 px] object-cover rounded-t-xl"
+          className="w-full h-[350 px] object-cover rounded-t-xl"
         />
 
         {/* Class Details */}

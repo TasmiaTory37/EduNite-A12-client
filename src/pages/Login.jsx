@@ -24,7 +24,7 @@ const Login = () => {
       const user = result.user;
       setUser(user);
 
-      const res = await axios.post('http://localhost:3000/jwt', { email: user.email });
+      const res = await axios.post('https://assignment-12-server-psi-jade.vercel.app/jwt', { email: user.email });
       localStorage.setItem('access-token', res.data.token);
 
       Swal.fire('Success', 'Login successful!', 'success');
@@ -42,13 +42,13 @@ const Login = () => {
       setUser(user);
 
       // Optional: Save to DB (if first time)
-      await axios.post('http://localhost:3000/users', {
+      await axios.post('https://assignment-12-server-psi-jade.vercel.app/users', {
         name: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
       });
 
-      const res = await axios.post('http://localhost:3000/jwt', { email: user.email });
+      const res = await axios.post('https://assignment-12-server-psi-jade.vercel.app/jwt', { email: user.email });
       localStorage.setItem('access-token', res.data.token);
 
       Swal.fire('Success', `Welcome ${user.displayName}`, 'success');

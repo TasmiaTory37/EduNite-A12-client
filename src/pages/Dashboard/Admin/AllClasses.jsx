@@ -1,5 +1,5 @@
 // AllClasses.jsx with Pagination
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hook/useAxiosSecure';
 import { useNavigate } from 'react-router';
@@ -7,6 +7,9 @@ import usePagination from '../../../Hook/usePagination';
 import Pagination from '../../../components/Pagination';
 
 const AllClasses = () => {
+   useEffect(() => {
+            document.title = "EduNite |All Classes"; 
+          }, []);
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 

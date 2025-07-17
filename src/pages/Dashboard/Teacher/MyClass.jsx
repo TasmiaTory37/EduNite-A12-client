@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../Hook/useAxiosSecure';
@@ -8,6 +8,9 @@ import usePagination from '../../../Hook/usePagination';
 import Pagination from '../../../components/Pagination';
 
 const MyClass = () => {
+   useEffect(() => {
+            document.title = "EduNite | My Class"; 
+          }, []);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();

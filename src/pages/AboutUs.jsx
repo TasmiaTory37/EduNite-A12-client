@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const AboutUs = () => {
+  useEffect(() => {
+        document.title = "EduNite | About Us"; 
+      }, []);
   return (
     <div className=" py-12 px-4 md:px-10 lg:px-20">
       <div className="max-w-4xl mx-auto text-center">

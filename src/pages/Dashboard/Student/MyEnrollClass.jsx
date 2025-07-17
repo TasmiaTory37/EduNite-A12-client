@@ -6,6 +6,9 @@ import usePagination from "../../../Hook/usePagination";
 import Pagination from "../../../components/Pagination";
 
 const MyEnrollClass = () => {
+   useEffect(() => {
+            document.title = "EduNite | My Enroll Class"; 
+          }, []);
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [classes, setClasses] = useState([]);

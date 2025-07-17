@@ -3,6 +3,9 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
 
 const Profile = () => {
+   useEffect(() => {
+            document.title = "EduNite | Profile"; 
+          }, []);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const [dbUser, setDbUser] = useState(null);
