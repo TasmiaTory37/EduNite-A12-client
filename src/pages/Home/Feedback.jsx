@@ -1,5 +1,3 @@
-// File: src/pages/Home/Feedback.jsx
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";

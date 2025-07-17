@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  // ✅ Login with email/password
+  //  Login with email/password
   const userLogin = async (email, password) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  // ✅ Login with Google
+  // Login with Google
   const handleGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);

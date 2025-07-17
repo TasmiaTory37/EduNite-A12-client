@@ -1,4 +1,3 @@
-// AllClasses.jsx with Pagination
 import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hook/useAxiosSecure';

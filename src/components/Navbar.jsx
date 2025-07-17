@@ -8,18 +8,25 @@ import useAxiosSecure from '../Hook/useAxiosSecure';
 
 const Navbar = () => {
 
-  const { user, logOut, loading } = useContext(AuthContext);
+  const { user, token,logOut, loading } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const [dbUser, setDbUser] = useState(null);
     
 
   useEffect(() => {
-    if (user?.email) {
-      axiosSecure.get(`/users/${user.email}`)
-        .then(res => setDbUser(res.data))
-        .catch(err => console.error("Error fetching dbUser:", err));
-    }
-  }, [user,axiosSecure]);
+  const token = localStorage.getItem('access-token');
+  // console.log("user", user) ;
+  // console.log("token",token) ;
+
+  if (user?.email && token) {
+    axiosSecure.get(`/users/${user.email}`)
+      .then(res => setDbUser(res.data))
+      .catch(err => console.error("Error fetching dbUser:", err));
+     
+  }
+}, [user, token,axiosSecure]);
+
+
     if (loading) return null;
 
   return (

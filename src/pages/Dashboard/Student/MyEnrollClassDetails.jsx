@@ -25,7 +25,7 @@ const MyEnrollClassDetails = () => {
   useEffect(() => {
     axiosSecure.get(`/assignments/${id}`).then((res) => setAssignments(res.data));
 
-    // OPTIONAL: preload submitted assignments from server (if supported)
+    
     axiosSecure
       .get(`/submitted-assignment-ids/${id}?email=${user.email}`)
       .then((res) => setSubmittedAssignments(res.data || []))
@@ -49,7 +49,7 @@ const MyEnrollClassDetails = () => {
       });
       Swal.fire("Submitted!", "Your assignment has been submitted.", "success");
 
-      // Clear input and mark as submitted
+     
       setSubmissionValues((prev) => ({ ...prev, [assignmentId]: "" }));
       setSubmittedAssignments((prev) => [...prev, assignmentId]);
     } catch (error) {

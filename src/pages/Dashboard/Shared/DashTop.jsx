@@ -19,7 +19,7 @@ const Dashtop = ({ toggleSidebar }) => {
           <FaBars />
         </button>
 
-        {/* ✅ Wrap logo & name in Link */}
+        {/*  Wrap logo & name in Link */}
         <Link to="/" className="flex items-center gap-2">
           <img src={logo} className="h-10 w-10" alt="EduNite logo" />
           <h2 className="text-xl font-bold text-blue-600">EduNite</h2>

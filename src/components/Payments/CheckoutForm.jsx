@@ -11,7 +11,7 @@ const CheckoutForm = ({ amount, classId }) => {
   const elements = useElements();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  const axiosSecure = useAxiosSecure(); // ✅ Fixed
+  const axiosSecure = useAxiosSecure(); 
 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -42,7 +42,7 @@ const CheckoutForm = ({ amount, classId }) => {
       if (result.error) {
         setError(result.error.message);
       } else if (result.paymentIntent.status === 'succeeded') {
-        setSuccess('Payment successful! ✅');
+        setSuccess('Payment successful! ');
 
         // Step 3: Save payment and enrollment
         await axiosSecure.post('/payments', {

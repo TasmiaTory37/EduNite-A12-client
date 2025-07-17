@@ -1,4 +1,3 @@
-// src/Components/Pagination.jsx
 const Pagination = ({ currentPage, totalPages, goToPage }) => (
   <div className="flex justify-center gap-2 py-4">
     <button className="btn btn-sm" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
