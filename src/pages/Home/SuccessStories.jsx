@@ -35,7 +35,7 @@ const SuccessStories = () => {
   return (
     <section className="py-10 md:py-12 lg:py-16">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-indigo-600">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-blue-600">
           Student Success Stories
         </h2>
         <Swiper

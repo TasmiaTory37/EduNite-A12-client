@@ -5,12 +5,12 @@ const Contact = () => {
             document.title = "EduNite | Contact"; 
           }, []);
   return (
-    <section className="py-20 px-6 md:px-10 bg-gray-50">
+    <section className="py-20 px-6 md:px-10 ">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-indigo-600 mb-4">Get in Touch</h2>
-          <p className="text-gray-600 max-w-xl mx-auto">
+          <h2 className="text-4xl font-bold text-primary mb-4">Get in Touch</h2>
+          <p className="text-base-content max-w-xl mx-auto">
             Have questions, feedback, or partnership ideas? We’d love to hear from you.
           </p>
         </div>
@@ -58,18 +58,18 @@ const Contact = () => {
           </form>
 
           {/* Contact Info */}
-          <div className="flex flex-col justify-center space-y-6 text-gray-700">
+          <div className="flex flex-col justify-center space-y-6">
             <div>
-              <h4 className="text-xl font-semibold text-indigo-600 mb-1">Email</h4>
-              <p>support@edunite.com</p>
+              <h4 className="text-xl font-semibold text-primary mb-1">Email</h4>
+              <p className='text-base-content'>support@edunite.com</p>
             </div>
             <div>
-              <h4 className="text-xl font-semibold text-indigo-600 mb-1">Phone</h4>
-              <p> +1 (555) 123-4567</p>
+              <h4 className="text-xl font-semibold text-primary mb-1">Phone</h4>
+              <p className='text-base-content'> +1 (555) 123-4567</p>
             </div>
             <div>
-              <h4 className="text-xl font-semibold text-indigo-600 mb-1">Office</h4>
-              <p> Green Street, Green City</p>
+              <h4 className="text-xl font-semibold text-primary mb-1">Office</h4>
+              <p className='text-base-content'> Green Street, Green City</p>
             </div>
           </div>
         </div>

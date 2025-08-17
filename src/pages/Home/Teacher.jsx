@@ -25,15 +25,15 @@ const Teacher = () => {
 
         {/* Right: Text & CTA */}
         <div className="text-center md:text-left">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-indigo-600">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-blue-600">
             Inspire Learners, Shape Futures
           </h2>
 
-          <p className="text-gray-600 mb-6 max-w-xl mx-auto md:mx-0">
+          <p className="text-base-content mb-6 max-w-xl mx-auto md:mx-0">
             Join our growing platform to teach what you love, connect with global learners, and make a lasting impact — all on your schedule.
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 text-blue-800 mb-6 max-w-xs mx-auto md:mx-0">
+          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 text-blue-500 mb-6 max-w-xs mx-auto md:mx-0">
             <div className="flex items-center gap-2">
               <FaChalkboardTeacher size={20} />
               <span className="text-sm">Teach Passionately</span>

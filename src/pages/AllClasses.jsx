@@ -74,12 +74,12 @@ const AllClasses = () => {
             <div className="p-5 flex flex-col justify-between flex-grow">
               <div className="space-y-2 mb-4">
                 <h3 className="text-xl font-semibold text-blue-700">{cls.title}</h3>
-                <p><strong>Instructor:</strong> {cls.name}</p>
-                <p><strong>Price:</strong> ${cls.price}</p>
-                <p className="text-sm text-gray-600">
+                <p className='text-black'><strong >Instructor:</strong> {cls.name}</p>
+                <p className='text-black'><strong >Price:</strong> ${cls.price}</p>
+                <p className="text-sm text-black">
                   {cls.description.slice(0, 80)}...
                 </p>
-                <p><strong>Enrolled:</strong> {cls.enrollCount || 0}</p>
+                <p className='text-black'><strong >Enrolled:</strong> {cls.enrollCount || 0}</p>
               </div>
               <button
                 onClick={() => navigate(`/class/${cls._id}`)}

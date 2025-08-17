@@ -37,13 +37,13 @@ const Dashboard = () => {
   if (loading) return <div className="text-center py-10">Loading Dashboard...</div>;
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50 relative">
+    <div className="min-h-screen flex flex-col  relative">
      <Dashtop toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
       
       {/* Overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-gray-50 bg-opacity-40 z-40 md:hidden"
+          className="fixed inset-0 bg-opacity-40 z-40 md:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}

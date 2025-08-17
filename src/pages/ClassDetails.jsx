@@ -34,11 +34,11 @@ const ClassDetails = () => {
         {/* Class Details */}
         <div className="p-6 space-y-2">
           <h2 className="text-3xl font-bold text-blue-700 mb-3">{cls.title}</h2>
-          <p><strong>Instructor:</strong> {cls.name}</p>
-          <p><strong>Email:</strong> {cls.email}</p>
-          <p><strong>Price:</strong> ${cls.price}</p>
-          <p><strong>Description:</strong> {cls.description}</p>
-          <p><strong>Total Enrolled:</strong> {cls.enrollCount || 0}</p>
+          <p className='text-black'><strong>Instructor:</strong> {cls.name}</p>
+          <p className='text-black'><strong>Email:</strong> {cls.email}</p>
+          <p className='text-black'><strong>Price:</strong> ${cls.price}</p>
+          <p className='text-black'><strong>Description:</strong> {cls.description}</p>
+          <p className='text-black'><strong>Total Enrolled:</strong> {cls.enrollCount || 0}</p>
 
           <button
             onClick={() => navigate(`/payment/${cls._id}`)}

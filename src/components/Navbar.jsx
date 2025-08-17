@@ -46,12 +46,12 @@ const Navbar = () => {
               </div>
               <ul tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/'>Home</NavLink></li>
-                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/all-classes'>All Classes</NavLink></li>
-                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/contact'>Contact</NavLink></li>
-                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/aboutus'>About Us</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/'>Home</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/all-classes'>All Classes</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/contact'>Contact</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/aboutus'>About Us</NavLink></li>
                 {user && (
-                  <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/teach-on-edunite'>Teach on EduNite</NavLink></li>
+                  <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/teach-on-edunite'>Teach on EduNite</NavLink></li>
                 )}
               </ul>
             </div>
@@ -64,18 +64,26 @@ const Navbar = () => {
           {/* Center */}
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
-              <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/'>Home</NavLink></li>
-              <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/all-classes'>All Classes</NavLink></li>
-              <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/contact'>Contact</NavLink></li>
-              <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/aboutus'>About Us</NavLink></li>
+              <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/'>Home</NavLink></li>
+              <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/all-classes'>All Classes</NavLink></li>
+              <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/contact'>Contact</NavLink></li>
+              <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/aboutus'>About Us</NavLink></li>
               {user && (
-                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/teach-on-edunite'>Teach on EduNite</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/teach-on-edunite'>Teach on EduNite</NavLink></li>
               )}
             </ul>
           </div>
 
           {/* End */}
           <div className="navbar-end gap-4">
+            <label className="toggle text-base-content">
+  <input type="checkbox" value="dark" className="theme-controller" />
+
+  <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></g></svg>
+
+  <svg aria-label="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></g></svg>
+
+</label>
             {loading ? (
               <span className="loading loading-spinner text-primary"></span>
             ) : user && user?.email ? (
@@ -89,7 +97,7 @@ const Navbar = () => {
                   </div>
                 </label>
                 <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                  <li className="text-center font-semibold text-gray-700 pointer-events-none">
+                  <li className="text-center font-semibold text-base-content pointer-events-none">
                     {user?.displayName || dbUser?.name || user?.email}
                   </li>
                   <li>

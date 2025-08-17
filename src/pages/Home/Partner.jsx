@@ -12,7 +12,7 @@ const Partner = () => {
   return (
     <section className="py-10 md:py-12 lg:py-16">
       <div className="max-w-6xl mx-auto px-4 text-center">
-        <p className="text-gray-600 text-base sm:text-lg md:text-xl mb-6">
+        <p className="text-base-content text-base sm:text-lg md:text-xl mb-6">
           Trusted by over <strong>15,000 companies</strong> and millions of learners around the world
         </p>
 
