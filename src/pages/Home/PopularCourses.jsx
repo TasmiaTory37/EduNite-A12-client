@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router';
 import useAxiosSecure from '../../Hook/useAxiosSecure';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
@@ -21,7 +22,7 @@ const PopularCourses = () => {
 
   return (
     <div className="px-4 sm:px-6 md:px-10 max-w-screen-xl mx-auto py-10 md:py-12 lg:py-16">
-      <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-indigo-600">
+      <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-blue-600">
         Popular Courses
       </h2>
 
@@ -29,11 +30,11 @@ const PopularCourses = () => {
         {/* Custom Navigation Arrows */}
         <button
           ref={prevRef}
-          className="swiper-button-prev absolute left-2 top-1/2 -translate-y-1/2 z-10 text-indigo-600 text-2xl sm:text-3xl"
+          className="swiper-button-prev absolute left-2 top-1/2 -translate-y-1/2 z-10 text-blue-600 text-2xl sm:text-3xl"
         ></button>
         <button
           ref={nextRef}
-          className="swiper-button-next absolute right-2 top-1/2 -translate-y-1/2 z-10 text-indigo-600 text-2xl sm:text-3xl"
+          className="swiper-button-next absolute right-2 top-1/2 -translate-y-1/2 z-10 text-blue-600 text-2xl sm:text-3xl"
         ></button>
 
         <Swiper
@@ -57,31 +58,42 @@ const PopularCourses = () => {
           className="pb-10"
         >
           {courses.map((cls) => (
-            <SwiperSlide key={cls._id}>
-              <div className="h-[360px] bg-white shadow-md rounded-xl overflow-hidden flex flex-col">
-                {/* Image */}
-                <div className="h-48 w-full">
-                  <img
-                    src={cls.image}
-                    alt={cls.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+          <SwiperSlide key={cls._id}>
+  <div className="h-[380px] bg-white shadow-md rounded-xl overflow-hidden flex flex-col">
+    {/* Image */}
+    <div className="h-44 w-full">
+      <img
+        src={cls.image}
+        alt={cls.title}
+        className="w-full h-full object-cover"
+      />
+    </div>
 
-                {/* Content */}
-                <div className="flex-1 px-4 py-3 flex flex-col">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-1">
-                    {cls.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 line-clamp-3 leading-snug mb-auto">
-                    {cls.description}
-                  </p>
-                  <p className="text-sm font-medium text-green-600 pt-2">
-                    Enrolled: {cls.enrollCount}
-                  </p>
-                </div>
-              </div>
-            </SwiperSlide>
+    {/* Content */}
+    <div className="flex-1 px-4 py-3 flex flex-col justify-between">
+      <div>
+        <h3 className="text-lg font-semibold text-gray-800 mb-1">
+          {cls.title}
+        </h3>
+        <p className="text-sm text-gray-600 line-clamp-3 leading-snug">
+          {cls.description}
+        </p>
+        <p className="text-sm font-medium text-green-600 pt-2">
+          Enrolled: {cls.enrollCount}
+        </p>
+      </div>
+
+      {/* 👇 Button always at bottom */}
+      <Link 
+        to="/all-classes" 
+        className="mt-4 block text-center text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md transition"
+      >
+        See More
+      </Link>
+    </div>
+  </div>
+</SwiperSlide>
+
           ))}
         </Swiper>
       </div>
