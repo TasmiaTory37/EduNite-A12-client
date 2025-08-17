@@ -44,7 +44,7 @@ const AllClasses = () => {
 
   return (
     <div className="p-6 bg-white shadow-md rounded-lg">
-      <h2 className="text-3xl font-bold mb-6 text-center text-indigo-600">All Classes</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center text-blue-600">All Classes</h2>
       <div className="overflow-x-auto">
         <table className="table-auto w-full border border-gray-200 text-sm">
           <thead className="bg-indigo-100 text-indigo-800">

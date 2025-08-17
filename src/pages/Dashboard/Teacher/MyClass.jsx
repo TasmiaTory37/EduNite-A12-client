@@ -76,17 +76,17 @@ const MyClass = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-3xl font-bold mb-6 text-center text-indigo-600">My Classes</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center text-blue-600">My Classes</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedData.map(cls => (
           <div key={cls._id} className="bg-white shadow-md rounded-lg overflow-hidden">
             <img src={cls.image} alt={cls.title} className="w-full h-40 object-cover" />
             <div className="p-4 space-y-2">
-              <h3 className="text-lg font-semibold">{cls.title}</h3>
-              <p><strong>Name:</strong> {cls.name}</p>
-              <p><strong>Email:</strong> {cls.email}</p>
-              <p><strong>Price:</strong> ${cls.price}</p>
-              <p><strong>Description:</strong> {cls.description}</p>
+              <h3 className="text-lg font-semibold text-blue-600">{cls.title}</h3>
+              <p className='text-black'><strong>Name:</strong> {cls.name}</p>
+              <p  className='text-black'><strong>Email:</strong> {cls.email}</p>
+              <p  className='text-black'><strong>Price:</strong> ${cls.price}</p>
+              <p  className='text-black'><strong>Description:</strong> {cls.description}</p>
               <span className={`inline-block px-3 py-1 text-sm font-medium rounded-full ${cls.status === 'approved' ? 'bg-green-500 text-white' : cls.status === 'rejected' ? 'bg-red-500 text-white' : 'bg-yellow-500 text-black'}`}>
                 {cls.status}
               </span>
@@ -119,9 +119,9 @@ const MyClass = () => {
 
       {/* Edit Modal */}
       {editingClass && (
-        <div className="fixed inset-0 bg-white bg-opacity-40 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-blue-50 bg-opacity-40 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded shadow-md w-96 space-y-4">
-            <h3 className="text-lg font-bold mb-4">Update Class</h3>
+            <h3 className="text-lg font-bold mb-4 text-blue-600">Update Class</h3>
             <input type="text" className="input input-bordered w-full" value={updatedData.title} onChange={(e) => setUpdatedData({ ...updatedData, title: e.target.value })} placeholder="Title" />
             <input type="text" className="input input-bordered w-full" value={updatedData.price} onChange={(e) => setUpdatedData({ ...updatedData, price: e.target.value })} placeholder="Price" />
             <input type="text" className="input input-bordered w-full" value={updatedData.image} onChange={(e) => setUpdatedData({ ...updatedData, image: e.target.value })} placeholder="Image URL" />

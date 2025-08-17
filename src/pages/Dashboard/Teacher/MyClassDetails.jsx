@@ -72,17 +72,17 @@ const MyClassDetails = () => {
     <div className="p-6 space-y-8">
       {/* Stats */}
       <div className="grid md:grid-cols-3 gap-6 text-center">
-        <div className="bg-blue-100 p-6 rounded shadow">
-          <h3 className="text-xl font-bold">Total Enrollments</h3>
-          <p className="text-3xl ">{enrollCount}</p>
+        <div className="bg-blue-50 p-6 rounded shadow">
+          <h3 className="text-xl font-bold text-black">Total Enrollments</h3>
+          <p className="text-3xl text-black ">{enrollCount}</p>
         </div>
-        <div className="bg-green-100 p-6 rounded shadow">
-          <h3 className="text-xl font-bold">Total Assignments</h3>
-          <p className="text-3xl ">{assignments.length}</p>
+        <div className="bg-blue-50 p-6 rounded shadow">
+          <h3 className="text-xl font-bold text-black">Total Assignments</h3>
+          <p className="text-3xl text-black">{assignments.length}</p>
         </div>
-        <div className="bg-purple-100 p-6 rounded shadow">
-          <h3 className="text-xl font-bold">Total Submissions</h3>
-          <p className="text-3xl ">{submissionCount}</p>
+        <div className="bg-blue-50 p-6 rounded shadow">
+          <h3 className="text-xl font-bold text-black">Total Submissions</h3>
+          <p className="text-3xl  text-black">{submissionCount}</p>
         </div>
       </div>
 
@@ -116,9 +116,9 @@ const MyClassDetails = () => {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-white bg-opacity-30 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-blue-50 bg-opacity-30 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded w-full max-w-md space-y-4 shadow-lg">
-            <h3 className="text-lg font-bold">Add Assignment</h3>
+            <h3 className="text-lg font-bold text-blue-600">Add Assignment</h3>
             <input
               type="text"
               className="input input-bordered w-full"

@@ -78,7 +78,7 @@ const MyEnrollClass = () => {
       {/* Payment History */}
       <h2 className="text-2xl font-bold mt-8 mb-4">Payment History</h2>
       <table className="w-full border">
-        <thead className="bg-gray-100">
+        <thead className="">
           <tr>
             <th className="p-2 border">Class ID</th>
             <th className="p-2 border">Amount</th>

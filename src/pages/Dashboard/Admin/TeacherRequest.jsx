@@ -44,7 +44,7 @@ const TeacherRequest = () => {
     <div className="overflow-x-auto mt-10 px-6">
       <table className="table w-full">
         <thead>
-          <tr className="bg-gray-200">
+          <tr className="">
             <th>#</th>
             <th>Name</th>
             <th>Photo</th>
