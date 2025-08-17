@@ -40,33 +40,33 @@ const ClassProgress = () => {
 
   return (
     <div className="p-6 space-y-10 max-w-6xl mx-auto">
-      <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6">
+      <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
         Class Progress Overview
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-        <div className="bg-blue-100 p-6 rounded shadow border border-gray-200">
-          <h4 className="text-lg font-semibold text-gray-700 mb-1">Total Enrollments</h4>
-          <p className="text-2xl font-bold">{enrollCount}</p>
+        <div className="bg-blue-50 p-6 rounded shadow border border-gray-200">
+          <h4 className="text-lg font-semibold text-black mb-1">Total Enrollments</h4>
+          <p className="text-2xl font-bold text-black">{enrollCount}</p>
         </div>
 
-        <div className="bg-green-100 p-6 rounded shadow border border-gray-200">
-          <h4 className="text-lg font-semibold text-gray-700 mb-1">Total Assignments</h4>
-          <p className="text-2xl font-bold">{assignmentCount}</p>
+        <div className="bg-blue-50  p-6 rounded shadow border border-gray-200">
+          <h4 className="text-lg font-semibold text-black mb-1">Total Assignments</h4>
+          <p className="text-2xl font-bold text-black">{assignmentCount}</p>
         </div>
 
-        <div className="bg-purple-100 p-6 rounded shadow border border-gray-200">
-          <h4 className="text-lg font-semibold text-gray-700 mb-1">Total Submissions</h4>
-          <p className="text-2xl font-bold">{submissionCount}</p>
+        <div className="bg-blue-50 p-6 rounded shadow border border-gray-200">
+          <h4 className="text-lg font-semibold text-black mb-1">Total Submissions</h4>
+          <p className="text-2xl font-bold text-black">{submissionCount}</p>
         </div>
       </div>
 
       <div>
-        <h3 className="text-2xl font-semibold mb-4 text-gray-800">
+        <h3 className="text-2xl font-semibold mb-4 text-blue-600">
           Assignment List
         </h3>
         {assignments.length === 0 ? (
-          <p className="text-gray-500">No assignments available.</p>
+          <p className="text-black">No assignments available.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full table-auto border text-sm text-left">
@@ -77,7 +77,7 @@ const ClassProgress = () => {
                   <th className="p-3">Deadline</th>
                 </tr>
               </thead>
-              <tbody className="text-gray-700">
+              <tbody className="text-base-content">
                 {paginatedData.map((a) => (
                   <tr key={a._id} className="border-t">
                     <td className="p-3 font-medium">{a.title}</td>

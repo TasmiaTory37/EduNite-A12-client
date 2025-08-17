@@ -9,7 +9,7 @@ const Contact = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-primary mb-4">Get in Touch</h2>
+          <h2 className="text-4xl font-bold text-blue-600 mb-4">Get in Touch</h2>
           <p className="text-base-content max-w-xl mx-auto">
             Have questions, feedback, or partnership ideas? We’d love to hear from you.
           </p>
@@ -60,15 +60,15 @@ const Contact = () => {
           {/* Contact Info */}
           <div className="flex flex-col justify-center space-y-6">
             <div>
-              <h4 className="text-xl font-semibold text-primary mb-1">Email</h4>
+              <h4 className="text-xl font-semibold text-blue-600 mb-1">Email</h4>
               <p className='text-base-content'>support@edunite.com</p>
             </div>
             <div>
-              <h4 className="text-xl font-semibold text-primary mb-1">Phone</h4>
+              <h4 className="text-xl font-semibold text-blue-600 mb-1">Phone</h4>
               <p className='text-base-content'> +1 (555) 123-4567</p>
             </div>
             <div>
-              <h4 className="text-xl font-semibold text-primary mb-1">Office</h4>
+              <h4 className="text-xl font-semibold text-blue-600 mb-1">Office</h4>
               <p className='text-base-content'> Green Street, Green City</p>
             </div>
           </div>

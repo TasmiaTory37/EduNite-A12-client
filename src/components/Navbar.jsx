@@ -64,12 +64,12 @@ const Navbar = () => {
               </div>
               <ul tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-white'} to='/'>Home</NavLink></li>
-                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-white'} to='/all-classes'>All Classes</NavLink></li>
-                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-white'} to='/contact'>Contact</NavLink></li>
-                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-white'} to='/aboutus'>About Us</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-base-content'} to='/'>Home</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-base-content'} to='/all-classes'>All Classes</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-base-content'} to='/contact'>Contact</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-base-content'} to='/aboutus'>About Us</NavLink></li>
                 {user && (
-                  <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-white'} to='/teach-on-edunite'>Teach on EduNite</NavLink></li>
+                  <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-base-content'} to='/teach-on-edunite'>Teach on EduNite</NavLink></li>
                 )}
               </ul>
             </div>
