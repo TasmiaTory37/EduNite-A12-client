@@ -53,9 +53,9 @@ const Navbar = () => {
         <div className="navbar max-w-7xl mx-auto px-5 md:px-10 justify-between items-center">
 
           {/* Start */}
-          <div className="navbar-start justify-start items-center">
+          <div className="navbar-start justify-start items-center gap-3">
             <div className="dropdown">
-              <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <div tabIndex={0} role="button" className="btn lg:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none"
                   viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -64,12 +64,12 @@ const Navbar = () => {
               </div>
               <ul tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/'>Home</NavLink></li>
-                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/all-classes'>All Classes</NavLink></li>
-                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/contact'>Contact</NavLink></li>
-                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/aboutus'>About Us</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-white'} to='/'>Home</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-white'} to='/all-classes'>All Classes</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-white'} to='/contact'>Contact</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-white'} to='/aboutus'>About Us</NavLink></li>
                 {user && (
-                  <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-black'} to='/teach-on-edunite'>Teach on EduNite</NavLink></li>
+                  <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : 'text-white'} to='/teach-on-edunite'>Teach on EduNite</NavLink></li>
                 )}
               </ul>
             </div>
