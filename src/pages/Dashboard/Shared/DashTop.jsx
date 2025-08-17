@@ -8,7 +8,7 @@ const Dashtop = ({ toggleSidebar }) => {
   const { user, logOut } = useContext(AuthContext);
 
   return (
-    <div className="bg-white px-4 sm:px-6 py-3 shadow flex justify-between items-center fixed top-0 w-full z-40 md:static">
+    <div className="bg-white px-4 sm:px-6 py-3 shadow flex justify-between items-center sticky top-0 w-full z-40 md:static">
 
       {/* Left: Hamburger + Logo (Clickable) */}
       <div className="flex items-center gap-3">
