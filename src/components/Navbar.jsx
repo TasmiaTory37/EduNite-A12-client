@@ -49,6 +49,7 @@ const Navbar = () => {
                 <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/'>Home</NavLink></li>
                 <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/all-classes'>All Classes</NavLink></li>
                 <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/contact'>Contact</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/aboutus'>About Us</NavLink></li>
                 {user && (
                   <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/teach-on-edunite'>Teach on EduNite</NavLink></li>
                 )}
@@ -66,6 +67,7 @@ const Navbar = () => {
               <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/'>Home</NavLink></li>
               <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/all-classes'>All Classes</NavLink></li>
               <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/contact'>Contact</NavLink></li>
+              <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/aboutus'>About Us</NavLink></li>
               {user && (
                 <li><NavLink className={({ isActive }) => isActive ? 'text-blue-500' : ''} to='/teach-on-edunite'>Teach on EduNite</NavLink></li>
               )}
